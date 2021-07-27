@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
-public struct PlayerInputs
-{
-    public Vector2 Movement;
-    public bool Jump;
-    public bool Attack;
-    public bool Crouch;
-} 
 
 public class PlayerInputController : MonoBehaviour
 {
-    private PlayerInputs inputs;
-    private void Start() {
-        inputs = new PlayerInputs();
+    public PlayerInputs Inputs { get; private set; }
+    private void Awake()
+    {
+        Inputs = new PlayerInputs();
     }
+    private void FixedUpdate() { }
     public void PlayerMovement(InputAction.CallbackContext _context)
     {
-        inputs.Movement = _context.ReadValue<Vector2>();
-        Debug.Log(inputs);
+        Inputs.Movement = _context.ReadValue<Vector2>();
     }
-    // public void PlayerJump = () => Input.Jump = true;
-    // public void PlayerAttack = () => Input.Attack = true;
-    // public void PlayerCrouch = () => Input.Crouch = true;
 
+    public void PlayerJump(InputAction.CallbackContext _context)
+    {
+        Inputs.Jump = _context.phase == InputActionPhase.Performed;
+    }
+
+    public void UseInputs()
+    {
+        PlayerInputs newInputs = new PlayerInputs();
+        newInputs.Movement = Inputs.Movement;
+        Inputs = newInputs;
+    }
 }
