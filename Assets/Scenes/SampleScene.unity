@@ -232,6 +232,82 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionId
+      value: a0c1106a-377a-4ed6-9f6b-e9c1a650913d
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
+      value: 120f9a10-4d14-472a-87fb-c75a93a85cfc
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionName
+      value: Fight/FirstSkill[/Keyboard/ctrl]
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
+      value: Fight/SecondSkill[/Keyboard/shift]
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 890795246}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 890795246}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayerFirstSkill
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayerSecondSkill
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerInputController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerInputController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795245, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 890795247, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
       propertyPath: drawGizmos
       value: 1
@@ -243,6 +319,14 @@ PrefabInstance:
     - target: {fileID: 890795252, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
       propertyPath: jumpForce
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795252, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: dashDistance
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795252, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: dashMovementSpeed
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1975194375736644, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
       propertyPath: m_Name
@@ -298,6 +382,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+--- !u!114 &890795246 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 890795246, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+  m_PrefabInstance: {fileID: 890795243}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 230457f64732c5e488495f536b769fd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

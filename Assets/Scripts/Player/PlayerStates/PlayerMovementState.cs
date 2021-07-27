@@ -28,12 +28,35 @@ public class PlayerMovementState : State
             return;
         }
 
+        if (Machine.Inputs.FirstSkill)
+        {
+            Machine.SetState(player.GetNewSkillState(true));
+            return;
+        }
+
+        if (Machine.Inputs.SecondSkill)
+        {
+            Machine.SetState(player.GetNewSkillState(false));
+            return;
+        }
+
     }
 
     public override void UpdatePhysics()
     {
         base.UpdatePhysics();
-        player.Move();
+        Move();
+    }
+
+    public void Move()
+    {
+        Vector3 lookAtPos = player.transform.position;
+        lookAtPos.x += player.Inputs.Movement.x;
+        lookAtPos.z += player.Inputs.Movement.y;
+        player.transform.LookAt(lookAtPos);
+
+        Vector3 newPos = player.transform.position + player.transform.forward * player.data.movementSpeed;
+        player.rb.MovePosition(newPos);
     }
 
     public override void Exit()

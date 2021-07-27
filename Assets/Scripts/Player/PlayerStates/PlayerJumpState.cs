@@ -10,7 +10,7 @@ public class PlayerJumpState : State
         base.Enter(_machine, "Jump");
 
         player = Machine as PlayerController;
-        player.Jump();
+        Jump();
     }
 
     public override void UpdateFrame()
@@ -18,13 +18,30 @@ public class PlayerJumpState : State
         base.UpdateFrame();
 
         if (player.Inputs.Movement.magnitude >= 0.1f)
-            player.Move();
+            Move();
 
         if (player.IsGrounded() && player.rb.velocity.y <= 0f)
         {
             player.SetState(new PlayerIdleState());
             return;
         }
+    }
+    public void Move()
+    {
+        Vector3 lookAtPos = player.transform.position;
+        lookAtPos.x += player.Inputs.Movement.x;
+        lookAtPos.z += player.Inputs.Movement.y;
+        player.transform.LookAt(lookAtPos);
+
+        Vector3 newPos = player.transform.position + player.transform.forward * player.data.jumpMovementSpeed;
+        player.rb.MovePosition(newPos);
+    }
+
+    public void Jump()
+    {
+        Vector3 velocity = player.rb.velocity;
+        velocity.y = player.data.jumpForce;
+        player.rb.velocity = velocity;
     }
 
     public override void Exit()

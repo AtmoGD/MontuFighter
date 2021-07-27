@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerIdleState : State
 {
+    PlayerController player;
     public override void Enter(StateMachine _machine, string _animationParameter = "")
     {
         base.Enter(_machine);
+        player = Machine as PlayerController;
     }
 
     public override void UpdateFrame()
@@ -22,6 +24,18 @@ public class PlayerIdleState : State
         if (Machine.Inputs.Jump)
         {
             Machine.SetState(new PlayerJumpState());
+            return;
+        }
+
+        if (Machine.Inputs.FirstSkill)
+        {
+            Machine.SetState(player.GetNewSkillState(true));
+            return;
+        }
+
+        if (Machine.Inputs.SecondSkill)
+        {
+            Machine.SetState(player.GetNewSkillState(false));
             return;
         }
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [RequireComponent(typeof(PlayerData))]
 [RequireComponent(typeof(PlayerInputController))]
 public class PlayerController : StateMachine
@@ -18,6 +19,8 @@ public class PlayerController : StateMachine
     [Header("Variables")]
     [SerializeField] public int groundedLayer = 6;
     [SerializeField] public float groundedDistance = 0.05f;
+    [SerializeField] public PlayerSkill firstSkill;
+    [SerializeField] public PlayerSkill secondSkill;
 
     public new void Awake()
     {
@@ -33,6 +36,7 @@ public class PlayerController : StateMachine
     {
         Inputs = inputController.Inputs;
         inputController.UseInputs();
+        
         base.Update();
     }
 
@@ -41,27 +45,20 @@ public class PlayerController : StateMachine
         base.FixedUpdate();
     }
 
-    public void Move()
-    {
-        Vector3 lookAtPos = transform.position;
-        lookAtPos.x += Inputs.Movement.x;
-        lookAtPos.z += Inputs.Movement.y;
-        transform.LookAt(lookAtPos);
-
-        Vector3 newPos = transform.position + transform.forward * data.speed;
-        rb.MovePosition(newPos);
-    }
-
-    public void Jump()
-    {
-        Vector3 velocity = rb.velocity;
-        velocity.y = data.jumpForce;
-        rb.velocity = velocity;
-    }
-    
     public bool IsGrounded()
     {
         return Physics.SphereCast(groundedObject.transform.position, groundedDistance, Vector3.down, out RaycastHit _hit, groundedDistance, 1 << groundedLayer);
+    }
+
+    public State GetNewSkillState(bool _first)
+    {
+        switch (_first ? firstSkill : secondSkill)
+        {
+            case PlayerSkill.Dash:
+                return new PlayerDashState();
+            default:
+                return new PlayerIdleState();
+        }
     }
 
     private void OnDrawGizmos()
@@ -71,4 +68,5 @@ public class PlayerController : StateMachine
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(groundedObject.transform.position, groundedDistance);
     }
+
 }
