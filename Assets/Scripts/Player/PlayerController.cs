@@ -10,17 +10,26 @@ public class PlayerController : StateMachine
     [Header("Debugging")]
     [SerializeField] private bool drawGizmos = false;
 
+
     [Header("Player Controller References")]
-    [SerializeField] public PlayerInputController inputController;
-    [SerializeField] public PlayerData data;
-    [SerializeField] public GameObject groundedObject;
+    [SerializeField] protected PlayerInputController inputController;
+    [SerializeField] protected PlayerData data;
+    [SerializeField] protected GameObject groundedObject;
 
 
     [Header("Variables")]
-    [SerializeField] public int groundedLayer = 6;
-    [SerializeField] public float groundedDistance = 0.05f;
-    [SerializeField] public PlayerSkill firstSkill;
-    [SerializeField] public PlayerSkill secondSkill;
+    [SerializeField] protected int groundedLayer = 6;
+    [SerializeField] protected float groundedDistance = 0.05f;
+    [SerializeField] protected PlayerSkill firstSkill;
+    [SerializeField] protected PlayerSkill secondSkill;
+
+    public bool IsGrounded
+    {
+        get
+        {
+            return Physics.CheckSphere(groundedObject.transform.position, groundedDistance, 1 << groundedLayer);
+        }
+    }
 
     public new void Awake()
     {
@@ -36,7 +45,7 @@ public class PlayerController : StateMachine
     {
         Inputs = inputController.Inputs;
         inputController.UseInputs();
-        
+
         base.Update();
     }
 
@@ -45,10 +54,9 @@ public class PlayerController : StateMachine
         base.FixedUpdate();
     }
 
-    public bool IsGrounded()
-    {
-        return Physics.SphereCast(groundedObject.transform.position, groundedDistance, Vector3.down, out RaycastHit _hit, groundedDistance, 1 << groundedLayer);
-    }
+    public PlayerData GetData() { return data; }
+    public PlayerInputController GetInputController() { return inputController; }
+
 
     public State GetNewSkillState(bool _first)
     {

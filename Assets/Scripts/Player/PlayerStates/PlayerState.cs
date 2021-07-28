@@ -2,22 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : PlayerActiveState
+public class PlayerState : State
 {
+    public PlayerController Player { get; private set; }
     public override void Enter(StateMachine _machine, string _animationParameter = "")
     {
         base.Enter(_machine, _animationParameter);
+        Player = Machine as PlayerController;
     }
 
     public override void UpdateFrame()
     {
         base.UpdateFrame();
-
-        if (Player.Inputs.Movement.magnitude >= 0.1f)
-        {
-            Player.SetState(new PlayerMovementState());
-            return;
-        }
     }
 
     public override void Exit()

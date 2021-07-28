@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerJumpState : State
+public class PlayerJumpState : PlayerActiveState
 {
-    private PlayerController player;
     public override void Enter(StateMachine _machine, string _animationParameter = "Jump")
     {
         base.Enter(_machine, "Jump");
 
-        player = Machine as PlayerController;
         Jump();
     }
 
@@ -17,31 +15,30 @@ public class PlayerJumpState : State
     {
         base.UpdateFrame();
 
-        if (player.Inputs.Movement.magnitude >= 0.1f)
-            Move();
+        if (Player.Inputs.Movement.magnitude >= 0.1f)
+            JumpMove();
 
-        if (player.IsGrounded() && player.rb.velocity.y <= 0f)
+        if (Player.IsGrounded && Player.rb.velocity.y <= 0f)
         {
-            player.SetState(new PlayerIdleState());
+            Player.SetState(new PlayerIdleState());
             return;
         }
     }
-    public void Move()
+    public void JumpMove()
     {
-        Vector3 lookAtPos = player.transform.position;
-        lookAtPos.x += player.Inputs.Movement.x;
-        lookAtPos.z += player.Inputs.Movement.y;
-        player.transform.LookAt(lookAtPos);
+        Vector3 lookAtPos = Player.transform.position;
+        lookAtPos.x += Player.Inputs.Movement.x;
+        lookAtPos.z += Player.Inputs.Movement.y;
+        Player.transform.LookAt(lookAtPos);
 
-        Vector3 newPos = player.transform.position + player.transform.forward * player.data.jumpMovementSpeed;
-        player.rb.MovePosition(newPos);
+        Vector3 newPos = Player.transform.position + Player.transform.forward * Player.GetData().jumpMovementSpeed;
+        Player.rb.MovePosition(newPos);
     }
-
-    public void Jump()
+    protected void Jump()
     {
-        Vector3 velocity = player.rb.velocity;
-        velocity.y = player.data.jumpForce;
-        player.rb.velocity = velocity;
+        Vector3 velocity = Player.rb.velocity;
+        velocity.y = Player.GetData().jumpForce;
+        Player.rb.velocity = velocity;
     }
 
     public override void Exit()

@@ -25,14 +25,14 @@ public class PlayerInputController : MonoBehaviour
         Inputs.Jump = _context.phase == InputActionPhase.Performed;
     }
 
-    public void PlayerFirstSkill(InputAction.CallbackContext _context)
+    public void PlayerAttackSkill(InputAction.CallbackContext _context)
     {
-        Inputs.FirstSkill = _context.phase == InputActionPhase.Performed;
+        Inputs.AttackSkill = _context.phase == InputActionPhase.Performed;
     }
 
-    public void PlayerSecondSkill(InputAction.CallbackContext _context)
+    public void PlayerSupportSkill(InputAction.CallbackContext _context)
     {
-        Inputs.SecondSkill = _context.phase == InputActionPhase.Performed;
+        Inputs.SupportSkill = _context.phase == InputActionPhase.Performed;
     }
 
     public void UseInputs()
