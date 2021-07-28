@@ -21,8 +21,8 @@ public class PlayerController : StateMachine, Attackable
     [Header("Variables")]
     [SerializeField] protected int groundedLayer = 6;
     [SerializeField] protected float groundedDistance = 0.05f;
-    [SerializeField] protected PlayerSkill firstSkill;
-    [SerializeField] protected PlayerSkill secondSkill;
+    [SerializeField] protected PlayerSkill attackSkill;
+    [SerializeField] protected PlayerSkill supportSkill;
 
 
     public int HealthLeft { get; private set; }
@@ -72,7 +72,7 @@ public class PlayerController : StateMachine, Attackable
 
     public State GetNewSkillState(bool _first)
     {
-        switch (_first ? firstSkill : secondSkill)
+        switch (_first ? attackSkill : supportSkill)
         {
             case PlayerSkill.Dash:
                 return new PlayerDashState();
