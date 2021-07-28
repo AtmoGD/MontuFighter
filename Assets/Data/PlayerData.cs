@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerData : MonoBehaviour
+[CreateAssetMenu(fileName = "PlayerData", menuName = "Data/PlayerData")]
+public class PlayerData : ScriptableObject
 {
     public int maxHealth = 100;
     public float skillMultiplier = 1.0f;

@@ -17,13 +17,13 @@ public class PlayerActiveState : PlayerState
 
         if (Player.Inputs.AttackSkill)
         {
-            Player.SetState(Player.GetNewSkillState(true));
+            Player.SetState(StateFactory.Create(Player.GetAttackSkill()));
             return;
         }
 
         if (Player.Inputs.SupportSkill)
         {
-            Player.SetState(Player.GetNewSkillState(false));
+            Player.SetState(StateFactory.Create(Player.GetSupportSkill()));
             return;
         }
     }

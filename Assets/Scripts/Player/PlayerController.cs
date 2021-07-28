@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(PlayerData))]
 [RequireComponent(typeof(PlayerInputController))]
 public class PlayerController : StateMachine, Attackable
 {
+#if UNITY_EDITOR
     [Header("Debugging")]
     [SerializeField] private bool drawGizmos = false;
+#endif
 
-
-    [Header("Player Controller References")]
-    [SerializeField] protected PlayerInputController inputController;
+    [Header("Data")]
     [SerializeField] protected PlayerData data;
     [SerializeField] protected SkillData skillData;
+    [SerializeField] protected EffectLib effectLib;
+
+    [Header("References")]
+    [SerializeField] protected PlayerInputController inputController;
     [SerializeField] protected GameObject groundedObject;
 
 
@@ -39,7 +42,6 @@ public class PlayerController : StateMachine, Attackable
         base.Awake();
 
         inputController = GetComponent<PlayerInputController>();
-        data = GetComponent<PlayerData>();
 
         HealthLeft = data.maxHealth;
 
@@ -62,25 +64,17 @@ public class PlayerController : StateMachine, Attackable
     public void TakeDamage(Damage _damage)
     {
         HealthLeft -= _damage.attackDamage;
-        
+
     }
 
     public PlayerData GetData() { return data; }
     public SkillData GetSkillData() { return skillData; }
     public PlayerInputController GetInputController() { return inputController; }
+    public EffectLib GetEffectLib() { return effectLib; }
+    public PlayerSkill GetAttackSkill() { return attackSkill; }
+    public PlayerSkill GetSupportSkill() { return supportSkill; }
 
-
-    public State GetNewSkillState(bool _first)
-    {
-        switch (_first ? attackSkill : supportSkill)
-        {
-            case PlayerSkill.Dash:
-                return new PlayerDashState();
-            default:
-                return new PlayerIdleState();
-        }
-    }
-
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (!drawGizmos) return;
@@ -88,5 +82,6 @@ public class PlayerController : StateMachine, Attackable
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(groundedObject.transform.position, groundedDistance);
     }
+#endif
 
 }
