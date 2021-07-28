@@ -14,6 +14,7 @@ public class PlayerController : StateMachine, Attackable
     [Header("Player Controller References")]
     [SerializeField] protected PlayerInputController inputController;
     [SerializeField] protected PlayerData data;
+    [SerializeField] protected SkillData skillData;
     [SerializeField] protected GameObject groundedObject;
 
 
@@ -70,6 +71,7 @@ public class PlayerController : StateMachine, Attackable
     }
 
     public PlayerData GetData() { return data; }
+    public SkillData GetSkillData() { return skillData; }
     public PlayerInputController GetInputController() { return inputController; }
 
 

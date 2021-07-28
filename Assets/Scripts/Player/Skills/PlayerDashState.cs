@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class PlayerDashState : PlayerState
 {
-    private float dashMovementSpeed = 10f;
-    private float dashDistance = 10f;
     private float distanceLeft = 0f;
-    private int attackDamage = 10;
-    private float stunTime = 0.5f;
-    private float dashHitForce = 100f;
     private Vector3 lastPos;
     public override void Enter(StateMachine _machine, string _animationParameter = "Dash")
     {
         base.Enter(_machine, "Dash");
 
         lastPos = Player.transform.position;
-        distanceLeft = Player.GetData().skillMultiplier * dashDistance;
+        distanceLeft = Player.GetData().skillMultiplier * Player.GetSkillData().dashDistance;
     }
 
     public override void UpdateFrame()
@@ -39,15 +34,15 @@ public class PlayerDashState : PlayerState
         lookAtPos.z += Player.Inputs.Movement.y;
         Player.transform.LookAt(lookAtPos);
 
-        Player.rb.velocity = Player.transform.forward * Player.GetData().skillMultiplier * dashMovementSpeed;
+        Player.rb.velocity = Player.transform.forward * Player.GetData().skillMultiplier * Player.GetSkillData().dashMovementSpeed;
     }
 
     public override void OnCollisionEnter(Collision _collision) {
         Attackable enemy = _collision.collider.GetComponent<Attackable>();
         if (enemy != null) {
-            enemy.TakeDamage(Player.GetDamage(attackDamage, stunTime));
+            enemy.TakeDamage(Player.GetDamage(Player.GetSkillData().dashAttackDamage, Player.GetSkillData().dashStunTime));
             Vector3 dir = (_collision.collider.transform.position - Player.transform.position).normalized;
-            _collision.gameObject.GetComponent<Rigidbody>().AddForce(dir * dashHitForce);
+            _collision.gameObject.GetComponent<Rigidbody>().AddForce(dir * Player.GetSkillData().dashHitForce);
         }
 
         Player.SetState(new PlayerIdleState());

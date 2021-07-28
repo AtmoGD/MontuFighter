@@ -1276,6 +1276,7 @@ MonoBehaviour:
   drawGizmos: 1
   inputController: {fileID: 890795246}
   data: {fileID: 890795252}
+  skillData: {fileID: 11400000, guid: 15c6e75b00d1f794a8ba25353442f89d, type: 2}
   groundedObject: {fileID: 4484936281617936738}
   groundedLayer: 6
   groundedDistance: 0.2

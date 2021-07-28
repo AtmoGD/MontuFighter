@@ -35,7 +35,11 @@ public class PlayerMovementState : PlayerActiveState
         lookAtPos.z += Player.Inputs.Movement.y;
         Player.transform.LookAt(lookAtPos);
 
-        Vector3 newVel = Player.transform.forward * Player.GetData().movementSpeed;
+        Vector3 desVel = Player.transform.forward * Player.GetData().movementSpeed;
+        Vector3 newVel = Player.rb.velocity;
+        newVel.x = desVel.x;
+        newVel.z = desVel.z;
+
         Player.rb.velocity = newVel;
     }
 
