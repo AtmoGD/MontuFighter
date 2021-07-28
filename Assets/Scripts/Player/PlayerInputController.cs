@@ -7,7 +7,7 @@ using UnityEngine.InputSystem.Interactions;
 public class PlayerInputController : MonoBehaviour
 {
     public PlayerInputs Inputs { get; private set; }
-    
+
     private void Awake()
     {
         Inputs = new PlayerInputs();

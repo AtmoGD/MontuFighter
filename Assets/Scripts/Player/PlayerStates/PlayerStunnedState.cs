@@ -16,7 +16,7 @@ public class PlayerStunnedState : PlayerState
     public override void UpdateFrame()
     {
         base.UpdateFrame();
-        if(stunTimeLeft == -1f) return;
+        if (stunTimeLeft == -1f) return;
 
         stunTimeLeft -= Time.deltaTime;
         if (stunTimeLeft <= 0)
@@ -31,7 +31,7 @@ public class PlayerStunnedState : PlayerState
 
     public override void TakeDamage(Damage _damage)
     {
-        if(Player.HealthLeft <= 0) return;
+        if (Player.HealthLeft <= 0) return;
 
         Player.ChangeHealthLeft(-_damage.attackDamage);
     }

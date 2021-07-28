@@ -17,7 +17,8 @@ public class PlayerHitState : PlayerState
         base.UpdateFrame();
 
         getHitTimeLeft -= Time.deltaTime;
-        if (getHitTimeLeft <= 0f) {
+        if (getHitTimeLeft <= 0f)
+        {
             Player.SetState(new PlayerStunnedState());
             (Player.State as PlayerStunnedState).TakeDamageData(damage);
         }
@@ -30,7 +31,7 @@ public class PlayerHitState : PlayerState
 
     public override void TakeDamage(Damage _damage)
     {
-        if(Player.HealthLeft <= 0) return;
+        if (Player.HealthLeft <= 0) return;
 
         Player.ChangeHealthLeft(-_damage.attackDamage);
     }

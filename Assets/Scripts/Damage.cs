@@ -8,7 +8,8 @@ public class Damage
     public int attackDamage;
     public float stunTime;
 
-    public Damage(PlayerController _sender, int _attackDamage, float _stunTime) {
+    public Damage(PlayerController _sender, int _attackDamage, float _stunTime)
+    {
         sender = _sender;
         attackDamage = _attackDamage;
         stunTime = _stunTime;

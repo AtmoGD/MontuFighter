@@ -27,7 +27,6 @@ public abstract class State
     public virtual void OnTriggerEnter(Collider _collider) { }
     public virtual void OnTriggerStay(Collider _collider) { }
     public virtual void OnTriggerExit(Collider _collider) { }
-
     public virtual void OnCollisionEnter(Collision _collision) { }
     public virtual void OnCollisionStay(Collision _collision) { }
     public virtual void OnCollisionExit(Collision _collision) { }

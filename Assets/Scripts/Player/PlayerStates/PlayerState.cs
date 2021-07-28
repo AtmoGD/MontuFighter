@@ -13,7 +13,7 @@ public class PlayerState : State
 
     public virtual void TakeDamage(Damage _damage)
     {
-        if(Player.HealthLeft <= 0) return;
+        if (Player.HealthLeft <= 0) return;
 
         Player.SetState(new PlayerHitState());
         (Player.State as PlayerHitState).TakeDamageData(_damage);

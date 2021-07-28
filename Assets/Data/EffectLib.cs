@@ -4,7 +4,8 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public struct Effect {
+public struct Effect
+{
     public string name;
     public GameObject prefab;
 }

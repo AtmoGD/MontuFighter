@@ -29,10 +29,11 @@ public class PlayerDashState : PlayerState
             Player.SetState(new PlayerIdleState());
     }
 
-    public override void Exit() {
+    public override void Exit()
+    {
         base.Exit();
 
-        Player.DestroyObject(dashObject);        
+        Player.DestroyObject(dashObject);
     }
 
     public void Dash()
@@ -45,9 +46,11 @@ public class PlayerDashState : PlayerState
         Player.rb.velocity = Player.transform.forward * Player.GetData().skillMultiplier * Player.GetSkillData().dashMovementSpeed;
     }
 
-    public override void OnCollisionEnter(Collision _collision) {
+    public override void OnCollisionEnter(Collision _collision)
+    {
         Attackable enemy = _collision.collider.GetComponent<Attackable>();
-        if (enemy != null) {
+        if (enemy != null)
+        {
             enemy.TakeDamage(Player.GetDamage(Player.GetSkillData().dashAttackDamage, Player.GetSkillData().dashStunTime));
             Vector3 dir = (_collision.collider.transform.position - Player.transform.position).normalized;
             _collision.gameObject.GetComponent<Rigidbody>().AddForce(dir * Player.GetSkillData().dashHitForce);
