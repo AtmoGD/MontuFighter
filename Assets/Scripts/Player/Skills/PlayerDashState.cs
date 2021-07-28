@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class PlayerDashState : PlayerState
 {
-    float distanceLeft = 0f;
+    private float dashMovementSpeed = 10f;
+    private float dashDistance = 10f;
+    private float distanceLeft = 0f;
+    private int attackDamage = 10;
+    private float stunTime = 0.5f;
+    private float dashHitForce = 100f;
+    private Vector3 lastPos;
     public override void Enter(StateMachine _machine, string _animationParameter = "Dash")
     {
         base.Enter(_machine, "Dash");
 
-        distanceLeft = Player.GetData().dashDistance;
+        lastPos = Player.transform.position;
+        distanceLeft = Player.GetData().skillMultiplier * dashDistance;
     }
 
     public override void UpdateFrame()
@@ -18,10 +25,11 @@ public class PlayerDashState : PlayerState
 
         Dash();
 
+        distanceLeft -= (Player.transform.position - lastPos).magnitude;
+        lastPos = Player.transform.position;
+
         if (distanceLeft <= 0f)
-        {
             Player.SetState(new PlayerIdleState());
-        }
     }
 
     public void Dash()
@@ -31,10 +39,18 @@ public class PlayerDashState : PlayerState
         lookAtPos.z += Player.Inputs.Movement.y;
         Player.transform.LookAt(lookAtPos);
 
-        Vector3 newPos = Player.transform.position + Player.transform.forward * Player.GetData().dashMovementSpeed;
-        distanceLeft -= Vector3.Distance(Player.transform.position, newPos);
+        Player.rb.velocity = Player.transform.forward * Player.GetData().skillMultiplier * dashMovementSpeed;
+    }
 
-        Player.rb.MovePosition(newPos);
+    public override void OnCollisionEnter(Collision _collision) {
+        Attackable enemy = _collision.collider.GetComponent<Attackable>();
+        if (enemy != null) {
+            enemy.TakeDamage(Player.GetDamage(attackDamage, stunTime));
+            Vector3 dir = (_collision.collider.transform.position - Player.transform.position).normalized;
+            _collision.gameObject.GetComponent<Rigidbody>().AddForce(dir * dashHitForce);
+        }
+
+        Player.SetState(new PlayerIdleState());
     }
 
     public override void Exit()

@@ -7,6 +7,8 @@ public class PlayerIdleState : PlayerActiveState
     public override void Enter(StateMachine _machine, string _animationParameter = "")
     {
         base.Enter(_machine, _animationParameter);
+
+        Player.rb.velocity = Vector3.zero;
     }
 
     public override void UpdateFrame()

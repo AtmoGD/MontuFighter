@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
-
-[Serializable]
 public abstract class State
 {
     public virtual StateMachine Machine { get; set; }
@@ -28,4 +23,12 @@ public abstract class State
     {
         Machine.animator.SetBool(_animationParameter, _value);
     }
+
+    public virtual void OnTriggerEnter(Collider _collider) { }
+    public virtual void OnTriggerStay(Collider _collider) { }
+    public virtual void OnTriggerExit(Collider _collider) { }
+
+    public virtual void OnCollisionEnter(Collision _collision) { }
+    public virtual void OnCollisionStay(Collision _collision) { }
+    public virtual void OnCollisionExit(Collision _collision) { }
 }

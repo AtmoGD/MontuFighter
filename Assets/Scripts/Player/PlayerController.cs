@@ -5,7 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerData))]
 [RequireComponent(typeof(PlayerInputController))]
-public class PlayerController : StateMachine
+public class PlayerController : StateMachine, Attackable
 {
     [Header("Debugging")]
     [SerializeField] private bool drawGizmos = false;
@@ -23,6 +23,8 @@ public class PlayerController : StateMachine
     [SerializeField] protected PlayerSkill firstSkill;
     [SerializeField] protected PlayerSkill secondSkill;
 
+
+    public int HealthLeft { get; private set; }
     public bool IsGrounded
     {
         get
@@ -38,6 +40,8 @@ public class PlayerController : StateMachine
         inputController = GetComponent<PlayerInputController>();
         data = GetComponent<PlayerData>();
 
+        HealthLeft = data.maxHealth;
+
         SetState(new PlayerIdleState());
     }
 
@@ -52,6 +56,17 @@ public class PlayerController : StateMachine
     public new void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    public Damage GetDamage(int _damage, float _stunTime)
+    {
+        return new Damage(this, _damage, _stunTime);
+    }
+
+    public void TakeDamage(Damage _damage)
+    {
+        HealthLeft -= _damage.attackDamage;
+        
     }
 
     public PlayerData GetData() { return data; }

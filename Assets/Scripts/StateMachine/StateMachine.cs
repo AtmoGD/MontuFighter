@@ -38,4 +38,34 @@ public abstract class StateMachine : MonoBehaviour
         State.UpdatePhysics();
     }
 
+    public void OnCollisionEnter(Collision _collision)
+    {
+        State.OnCollisionEnter(_collision);
+    }
+
+    public void OnCollisionStay(Collision _collision)
+    {
+        State.OnCollisionStay(_collision);
+    }
+
+    public void OnCollisionExit(Collision _collision)
+    {
+        State.OnCollisionExit(_collision);
+    }
+
+    public void OnTriggerEnter(Collider _collider)
+    {
+        State.OnTriggerEnter(_collider);
+    }
+
+    public void OnTriggerStay(Collider _collider)
+    {
+        State.OnTriggerStay(_collider);
+    }
+
+    public void OnTriggerExit(Collider _collider)
+    {
+        State.OnTriggerExit(_collider);
+    }
+
 }

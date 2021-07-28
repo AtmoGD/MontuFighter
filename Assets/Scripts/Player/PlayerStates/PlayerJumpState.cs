@@ -24,6 +24,7 @@ public class PlayerJumpState : PlayerActiveState
             return;
         }
     }
+
     public void JumpMove()
     {
         Vector3 lookAtPos = Player.transform.position;
@@ -31,9 +32,14 @@ public class PlayerJumpState : PlayerActiveState
         lookAtPos.z += Player.Inputs.Movement.y;
         Player.transform.LookAt(lookAtPos);
 
-        Vector3 newPos = Player.transform.position + Player.transform.forward * Player.GetData().jumpMovementSpeed;
-        Player.rb.MovePosition(newPos);
+        Vector3 desVel = Player.transform.forward * Player.GetData().jumpMovementSpeed;
+        Vector3 newVel = Player.rb.velocity;
+        newVel.x = desVel.x;
+        newVel.z = desVel.z;
+
+        Player.rb.velocity = newVel;
     }
+
     protected void Jump()
     {
         Vector3 velocity = Player.rb.velocity;

@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class PlayerActiveState : PlayerState
 {
     public override void Enter(StateMachine _machine, string _animationParameter = "")
