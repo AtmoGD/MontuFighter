@@ -27,9 +27,4 @@ public class PlayerActiveState : PlayerState
             return;
         }
     }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
 }

@@ -10,14 +10,4 @@ public class PlayerState : State
         base.Enter(_machine, _animationParameter);
         Player = Machine as PlayerController;
     }
-
-    public override void UpdateFrame()
-    {
-        base.UpdateFrame();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
 }

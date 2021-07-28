@@ -54,11 +54,6 @@ public class PlayerController : StateMachine, Attackable
         base.Update();
     }
 
-    public new void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
-
     public Damage GetDamage(int _damage, float _stunTime)
     {
         return new Damage(this, _damage, _stunTime);

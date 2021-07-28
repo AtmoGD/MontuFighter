@@ -46,9 +46,4 @@ public class PlayerJumpState : PlayerActiveState
         velocity.y = Player.GetData().jumpForce;
         Player.rb.velocity = velocity;
     }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
 }

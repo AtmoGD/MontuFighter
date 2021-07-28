@@ -21,9 +21,4 @@ public class PlayerIdleState : PlayerActiveState
             return;
         }
     }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
 }

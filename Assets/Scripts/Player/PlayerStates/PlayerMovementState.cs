@@ -42,9 +42,4 @@ public class PlayerMovementState : PlayerActiveState
 
         Player.rb.velocity = newVel;
     }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
 }

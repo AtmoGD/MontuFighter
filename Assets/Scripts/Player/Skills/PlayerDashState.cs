@@ -47,9 +47,4 @@ public class PlayerDashState : PlayerState
 
         Player.SetState(new PlayerIdleState());
     }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
 }
