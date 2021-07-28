@@ -15,5 +15,5 @@ MonoBehaviour:
   dashMovementSpeed: 10
   dashDistance: 10
   dashAttackDamage: 10
-  dashStunTime: 0.5
+  dashStunTime: 5
   dashHitForce: 50

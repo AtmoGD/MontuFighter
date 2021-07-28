@@ -20,13 +20,11 @@ public class PlayerController : StateMachine, Attackable
     [SerializeField] protected PlayerInputController inputController;
     [SerializeField] protected GameObject groundedObject;
 
-
     [Header("Variables")]
     [SerializeField] protected int groundedLayer = 6;
     [SerializeField] protected float groundedDistance = 0.05f;
     [SerializeField] protected PlayerSkill attackSkill;
     [SerializeField] protected PlayerSkill supportSkill;
-
 
     public int HealthLeft { get; private set; }
     public bool IsGrounded
@@ -56,6 +54,21 @@ public class PlayerController : StateMachine, Attackable
         base.Update();
     }
 
+    public GameObject InstantiateObject(GameObject _prefab, Vector3 _position, Quaternion _rotation)
+    {
+        return Instantiate(_prefab, _position, _rotation);
+    }
+
+    public GameObject InstantiateObject(GameObject _prefab, Transform _parent)
+    {
+        return Instantiate(_prefab, _parent);
+    }
+
+    public void DestroyObject(GameObject _object)
+    {
+        Destroy(_object);
+    }
+
     public Damage GetDamage(int _damage, float _stunTime)
     {
         return new Damage(this, _damage, _stunTime);
@@ -63,14 +76,17 @@ public class PlayerController : StateMachine, Attackable
 
     public void TakeDamage(Damage _damage)
     {
-        HealthLeft -= _damage.attackDamage;
-
+        (State as PlayerState).TakeDamage(_damage);
     }
 
+    public void ChangeHealthLeft(int _amount)
+    {
+        HealthLeft += _amount;
+    }
     public PlayerData GetData() { return data; }
     public SkillData GetSkillData() { return skillData; }
-    public PlayerInputController GetInputController() { return inputController; }
     public EffectLib GetEffectLib() { return effectLib; }
+    public PlayerInputController GetInputController() { return inputController; }
     public PlayerSkill GetAttackSkill() { return attackSkill; }
     public PlayerSkill GetSupportSkill() { return supportSkill; }
 

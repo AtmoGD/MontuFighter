@@ -10,4 +10,13 @@ public class PlayerState : State
         base.Enter(_machine, _animationParameter);
         Player = Machine as PlayerController;
     }
+
+    public virtual void TakeDamage(Damage _damage)
+    {
+        if(Player.HealthLeft <= 0) return;
+
+        Player.SetState(new PlayerHitState());
+        (Player.State as PlayerHitState).TakeDamageData(_damage);
+        Player.ChangeHealthLeft(-_damage.attackDamage);
+    }
 }

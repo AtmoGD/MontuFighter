@@ -11,4 +11,5 @@ public class PlayerData : ScriptableObject
     public float movementSpeed = 0.1f;
     public float jumpMovementSpeed = 0.1f;
     public float jumpForce = 10f;
+    public float getHitTime = 0.4f;
 }

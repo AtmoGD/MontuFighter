@@ -6,12 +6,14 @@ public class PlayerDashState : PlayerState
 {
     private float distanceLeft = 0f;
     private Vector3 lastPos;
+    private GameObject dashObject;
     public override void Enter(StateMachine _machine, string _animationParameter = "Dash")
     {
         base.Enter(_machine, "Dash");
 
         lastPos = Player.transform.position;
         distanceLeft = Player.GetData().skillMultiplier * Player.GetSkillData().dashDistance;
+        dashObject = Player.InstantiateObject(Player.GetEffectLib().effects.Find(name => name.name == "Dash").prefab, Player.transform);
     }
 
     public override void UpdateFrame()
@@ -25,6 +27,12 @@ public class PlayerDashState : PlayerState
 
         if (distanceLeft <= 0f)
             Player.SetState(new PlayerIdleState());
+    }
+
+    public override void Exit() {
+        base.Exit();
+
+        Player.DestroyObject(dashObject);        
     }
 
     public void Dash()
