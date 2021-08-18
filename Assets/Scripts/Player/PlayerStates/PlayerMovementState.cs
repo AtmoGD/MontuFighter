@@ -40,6 +40,10 @@ public class PlayerMovementState : PlayerActiveState
         newVel.x = desVel.x;
         newVel.z = desVel.z;
 
-        Player.rb.velocity = newVel;
+        Player.rb.velocity = Vector3.Lerp(Player.rb.velocity,  newVel, Player.GetData().movementVelocityChange);
+
+        Player.State.SetAnimator(Player.GetData().animMoveSpeedName, Player.rb.velocity.magnitude * Player.GetData().speedAnimationMultiplier);
+
+        // Player.animator.SetFloat(Player.GetData().animMoveSpeedName, Player.rb.velocity.magnitude * Player.GetData().speedAnimationMultiplier);
     }
 }

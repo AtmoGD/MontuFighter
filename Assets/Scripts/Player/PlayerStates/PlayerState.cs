@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerState : State
 {
-    public PlayerController Player { get; private set; }
+    public CharacterController Player { get; private set; }
     public override void Enter(StateMachine _machine, string _animationParameter = "")
     {
         base.Enter(_machine, _animationParameter);
-        Player = Machine as PlayerController;
+        Player = Machine as CharacterController;
     }
 
     public virtual void TakeDamage(Damage _damage)

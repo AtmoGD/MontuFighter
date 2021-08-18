@@ -11,4 +11,5 @@ public class SkillData : ScriptableObject
     public int dashAttackDamage = 10;
     public float dashStunTime = 0.5f;
     public float dashHitForce = 100f;
+    public float dashCoolDown = 0.5f;
 }

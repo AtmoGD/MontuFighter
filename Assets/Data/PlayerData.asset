@@ -15,6 +15,12 @@ MonoBehaviour:
   maxHealth: 100
   skillMultiplier: 1
   stunResistance: 0.1
-  movementSpeed: 5
+  movementSpeed: 12
   jumpMovementSpeed: 5
   jumpForce: 10
+  getHitTime: 0.4
+  gravity: 0.05
+  collideBackForce: 400
+  movementVelocityChange: 0.2
+  animMoveSpeedName: MovementSpeed
+  speedAnimationMultiplier: 0.1

@@ -11,6 +11,14 @@ public class PlayerDashState : PlayerState
     {
         base.Enter(_machine, "Dash");
 
+        if (Player.HasCoolDown(_animationParameter))
+        {
+            Player.SetState(new PlayerIdleState());
+            return;
+        }
+
+        Player.AddCoolDown(new Cooldown(_animationParameter, Player.GetSkillData().dashCoolDown));
+
         lastPos = Player.transform.position;
         distanceLeft = Player.GetData().skillMultiplier * Player.GetSkillData().dashDistance;
         dashObject = Player.InstantiateObject(Player.GetEffectLib().effects.Find(name => name.name == "Dash").prefab, Player.transform);
@@ -39,8 +47,9 @@ public class PlayerDashState : PlayerState
     public void Dash()
     {
         Vector3 lookAtPos = Player.transform.position;
-        lookAtPos.x += Player.Inputs.Movement.x;
-        lookAtPos.z += Player.Inputs.Movement.y;
+        lookAtPos += Player.transform.forward;
+        // lookAtPos.x += Player.Inputs.Movement.x;
+        // lookAtPos.z += Player.Inputs.Movement.y;
         Player.transform.LookAt(lookAtPos);
 
         Player.rb.velocity = Player.transform.forward * Player.GetData().skillMultiplier * Player.GetSkillData().dashMovementSpeed;
@@ -48,14 +57,30 @@ public class PlayerDashState : PlayerState
 
     public override void OnCollisionEnter(Collision _collision)
     {
+        CheckCollision(_collision);
+    }
+
+    public override void OnCollisionStay(Collision _collision)
+    {
+        CheckCollision(_collision);
+    }
+    public void CheckCollision(Collision _collision)
+    {
+        if (_collision.gameObject.CompareTag("Ground"))
+            return;
+
         Attackable enemy = _collision.collider.GetComponent<Attackable>();
+
+        //Add take force to Attackable
         if (enemy != null)
         {
             enemy.TakeDamage(Player.GetDamage(Player.GetSkillData().dashAttackDamage, Player.GetSkillData().dashStunTime));
             Vector3 dir = (_collision.collider.transform.position - Player.transform.position).normalized;
             _collision.gameObject.GetComponent<Rigidbody>().AddForce(dir * Player.GetSkillData().dashHitForce);
+            Player.rb.AddForce(-dir * Player.GetData().collideBackForce);
         }
 
         Player.SetState(new PlayerIdleState());
     }
 }
+

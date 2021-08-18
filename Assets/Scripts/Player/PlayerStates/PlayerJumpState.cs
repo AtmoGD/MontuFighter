@@ -23,6 +23,8 @@ public class PlayerJumpState : PlayerActiveState
             Player.SetState(new PlayerIdleState());
             return;
         }
+
+        ApplyGravity();
     }
 
     public void JumpMove()
@@ -44,6 +46,13 @@ public class PlayerJumpState : PlayerActiveState
     {
         Vector3 velocity = Player.rb.velocity;
         velocity.y = Player.GetData().jumpForce;
+        Player.rb.velocity = velocity;
+    }
+
+    protected void ApplyGravity()
+    {
+        Vector3 velocity = Player.rb.velocity;
+        velocity.y -= Player.GetData().gravity;
         Player.rb.velocity = velocity;
     }
 }

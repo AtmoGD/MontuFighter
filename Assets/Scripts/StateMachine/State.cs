@@ -23,6 +23,9 @@ public abstract class State
     {
         Machine.animator.SetBool(_animationParameter, _value);
     }
+    public virtual void SetAnimator(string _animationParameter, float _value) {
+        Machine.animator.SetFloat(_animationParameter, _value);
+    }
 
     public virtual void OnTriggerEnter(Collider _collider) { }
     public virtual void OnTriggerStay(Collider _collider) { }

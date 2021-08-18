@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Damage
 {
-    public PlayerController sender;
+    public CharacterController sender;
     public int attackDamage;
     public float stunTime;
 
-    public Damage(PlayerController _sender, int _attackDamage, float _stunTime)
+    public Damage(CharacterController _sender, int _attackDamage, float _stunTime)
     {
         sender = _sender;
         attackDamage = _attackDamage;

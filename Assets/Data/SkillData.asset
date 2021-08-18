@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47348e8b0ef073d4fa7abc84496beed5, type: 3}
   m_Name: SkillData
   m_EditorClassIdentifier: 
-  dashMovementSpeed: 10
+  dashMovementSpeed: 20
   dashDistance: 10
   dashAttackDamage: 10
   dashStunTime: 5
