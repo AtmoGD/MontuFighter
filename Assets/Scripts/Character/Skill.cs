@@ -1,5 +1,6 @@
 
 public enum Skill
 {
-    Dash
+    Dash,
+    Fireball
 }

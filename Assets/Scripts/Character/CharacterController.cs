@@ -68,13 +68,6 @@ public class CharacterController : StateMachine, Attackable
     {
         cooldowns.ForEach(c => c.Remove(Time.deltaTime));
         cooldowns.RemoveAll(c => c.left <= 0f);
-        // foreach (Cooldown cooldown in cooldowns)
-        // {
-        //     cooldown.left -= Time.deltaTime;
-
-        //     if (cooldown.left <= 0)
-        //         RemoveCoolDown(cooldown);
-        // }
     }
 
     public GameObject InstantiateObject(GameObject _prefab, Vector3 _position, Quaternion _rotation)

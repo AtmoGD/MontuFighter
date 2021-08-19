@@ -9,7 +9,7 @@ public class HitState : CharacterState
     public override void Enter(StateMachine _machine, string _animationParameter = "GetHit")
     {
         base.Enter(_machine, "GetHit");
-        getHitTimeLeft = Player.GetData().getHitTime;
+        getHitTimeLeft = Character.GetData().getHitTime;
     }
 
     public override void UpdateFrame()
@@ -19,8 +19,8 @@ public class HitState : CharacterState
         getHitTimeLeft -= Time.deltaTime;
         if (getHitTimeLeft <= 0f)
         {
-            Player.SetState(new StunnedState());
-            (Player.State as StunnedState).TakeDamageData(damage);
+            Character.SetState(new StunnedState());
+            (Character.State as StunnedState).TakeDamageData(damage);
         }
     }
 
@@ -31,9 +31,9 @@ public class HitState : CharacterState
 
     public override void TakeDamage(Damage _damage)
     {
-        if (Player.HealthLeft <= 0) return;
+        if (Character.HealthLeft <= 0) return;
 
-        Player.ChangeHealthLeft(-_damage.attackDamage);
+        Character.ChangeHealthLeft(-_damage.attackDamage);
     }
 
 }

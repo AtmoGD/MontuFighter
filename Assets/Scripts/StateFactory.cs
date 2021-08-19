@@ -10,6 +10,8 @@ public static class StateFactory
         {
             case Skill.Dash:
                 return new DashState();
+            case Skill.Fireball:
+                return new FireballState();
             default:
                 return new IdleState();
         }

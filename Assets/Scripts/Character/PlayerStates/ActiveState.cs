@@ -9,21 +9,21 @@ public class ActiveState : CharacterState
     {
         base.UpdateFrame();
 
-        if (Player.Inputs.Jump && Player.IsGrounded)
+        if (Character.Inputs.Jump && Character.IsGrounded)
         {
             Machine.SetState(new JumpState());
             return;
         }
 
-        if (Player.Inputs.AttackSkill)
+        if (Character.Inputs.AttackSkill)
         {
-            Player.SetState(StateFactory.Create(Player.GetAttackSkill()));
+            Character.SetState(StateFactory.Create(Character.GetAttackSkill()));
             return;
         }
 
-        if (Player.Inputs.SupportSkill)
+        if (Character.Inputs.SupportSkill)
         {
-            Player.SetState(StateFactory.Create(Player.GetSupportSkill()));
+            Character.SetState(StateFactory.Create(Character.GetSupportSkill()));
             return;
         }
     }

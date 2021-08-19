@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class CharacterState : State
 {
-    public CharacterController Player { get; private set; }
+    public CharacterController Character { get; private set; }
     public override void Enter(StateMachine _machine, string _animationParameter = "")
     {
         base.Enter(_machine, _animationParameter);
-        Player = Machine as CharacterController;
+        Character = Machine as CharacterController;
     }
 
     public virtual void TakeDamage(Damage _damage)
     {
-        if (Player.HealthLeft <= 0) return;
+        if (Character.HealthLeft <= 0) return;
 
-        Player.SetState(new HitState());
-        (Player.State as HitState).TakeDamageData(_damage);
-        Player.ChangeHealthLeft(-_damage.attackDamage);
+        Character.SetState(new HitState());
+        (Character.State as HitState).TakeDamageData(_damage);
+        Character.ChangeHealthLeft(-_damage.attackDamage);
     }
 }

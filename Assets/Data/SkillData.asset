@@ -17,3 +17,10 @@ MonoBehaviour:
   dashAttackDamage: 10
   dashStunTime: 5
   dashHitForce: 50
+  dashCoolDown: 0.5
+  fireballMovementSpeed: 25
+  fireballDistance: 500
+  fireballAttackDamage: 10
+  fireballStunTime: 0.5
+  fireballHitForce: 100
+  fireballCoolDown: 3

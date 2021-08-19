@@ -11,17 +11,20 @@ public class DashState : CharacterState
     {
         base.Enter(_machine, "Dash");
 
-        if (Player.HasCoolDown(_animationParameter))
+        if (Character.HasCoolDown(animationParameter))
         {
-            Player.SetState(new IdleState());
+            Character.SetState(new IdleState());
             return;
         }
 
-        Player.AddCoolDown(new Cooldown(_animationParameter, Player.GetSkillData().dashCoolDown));
+        Character.AddCoolDown(new Cooldown(animationParameter, Character.GetSkillData().dashCoolDown));
 
-        lastPos = Player.transform.position;
-        distanceLeft = Player.GetData().skillMultiplier * Player.GetSkillData().dashDistance;
-        dashObject = Player.InstantiateObject(Player.GetEffectLib().effects.Find(name => name.name == "Dash").prefab, Player.transform);
+        lastPos = Character.transform.position;
+        distanceLeft = Character.GetData().skillMultiplier * Character.GetSkillData().dashDistance;
+
+        Effect effect = Character.GetEffectLib().effects.Find(x => x.name == animationParameter);
+        if (effect.prefab != null)
+            dashObject = Character.InstantiateObject(effect.prefab, Character.transform);
     }
 
     public override void UpdateFrame()
@@ -30,29 +33,27 @@ public class DashState : CharacterState
 
         Dash();
 
-        distanceLeft -= (Player.transform.position - lastPos).magnitude;
-        lastPos = Player.transform.position;
+        distanceLeft -= (Character.transform.position - lastPos).magnitude;
+        lastPos = Character.transform.position;
 
         if (distanceLeft <= 0f)
-            Player.SetState(new IdleState());
+            Character.SetState(new IdleState());
     }
 
     public override void Exit()
     {
         base.Exit();
 
-        Player.DestroyObject(dashObject);
+        Character.DestroyObject(dashObject);
     }
 
     public void Dash()
     {
-        Vector3 lookAtPos = Player.transform.position;
-        lookAtPos += Player.transform.forward;
-        // lookAtPos.x += Player.Inputs.Movement.x;
-        // lookAtPos.z += Player.Inputs.Movement.y;
-        Player.transform.LookAt(lookAtPos);
+        Vector3 lookAtPos = Character.transform.position;
+        lookAtPos += Character.transform.forward;
+        Character.transform.LookAt(lookAtPos);
 
-        Player.rb.velocity = Player.transform.forward * Player.GetData().skillMultiplier * Player.GetSkillData().dashMovementSpeed;
+        Character.rb.velocity = Character.transform.forward * Character.GetData().skillMultiplier * Character.GetSkillData().dashMovementSpeed;
     }
 
     public override void OnCollisionEnter(Collision _collision)
@@ -74,13 +75,13 @@ public class DashState : CharacterState
         //Add take force to Attackable
         if (enemy != null)
         {
-            enemy.TakeDamage(Player.GetDamage(Player.GetSkillData().dashAttackDamage, Player.GetSkillData().dashStunTime));
-            Vector3 dir = (_collision.collider.transform.position - Player.transform.position).normalized;
-            _collision.gameObject.GetComponent<Rigidbody>().AddForce(dir * Player.GetSkillData().dashHitForce);
-            Player.rb.AddForce(-dir * Player.GetData().collideBackForce);
+            enemy.TakeDamage(Character.GetDamage(Character.GetSkillData().dashAttackDamage, Character.GetSkillData().dashStunTime));
+            Vector3 dir = (_collision.collider.transform.position - Character.transform.position).normalized;
+            _collision.gameObject.GetComponent<Rigidbody>().AddForce(dir * Character.GetSkillData().dashHitForce);
+            Character.rb.AddForce(-dir * Character.GetData().collideBackForce);
         }
 
-        Player.SetState(new IdleState());
+        Character.SetState(new IdleState());
     }
 }
 

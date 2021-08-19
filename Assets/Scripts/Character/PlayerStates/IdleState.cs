@@ -8,16 +8,16 @@ public class IdleState : ActiveState
     {
         base.Enter(_machine, _animationParameter);
 
-        Player.rb.velocity = Vector3.zero;
+        Character.rb.velocity = Vector3.zero;
     }
 
     public override void UpdateFrame()
     {
         base.UpdateFrame();
 
-        if (Player.Inputs.Movement.magnitude >= 0.1f)
+        if (Character.Inputs.Movement.magnitude >= 0.1f)
         {
-            Player.SetState(new MovementState());
+            Character.SetState(new MovementState());
             return;
         }
     }

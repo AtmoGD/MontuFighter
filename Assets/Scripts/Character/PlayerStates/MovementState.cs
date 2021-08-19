@@ -14,9 +14,9 @@ public class MovementState : ActiveState
     {
         base.UpdateFrame();
 
-        if (Player.Inputs.Movement.magnitude <= 0.1f)
+        if (Character.Inputs.Movement.magnitude <= 0.1f)
         {
-            Player.SetState(new IdleState());
+            Character.SetState(new IdleState());
             return;
         }
     }
@@ -30,19 +30,19 @@ public class MovementState : ActiveState
 
     public void Move()
     {
-        Vector3 lookAtPos = Player.transform.position;
-        lookAtPos.x += Player.Inputs.Movement.x;
-        lookAtPos.z += Player.Inputs.Movement.y;
-        Player.transform.LookAt(lookAtPos);
+        Vector3 lookAtPos = Character.transform.position;
+        lookAtPos.x += Character.Inputs.Movement.x;
+        lookAtPos.z += Character.Inputs.Movement.y;
+        Character.transform.LookAt(lookAtPos);
 
-        Vector3 desVel = Player.transform.forward * Player.GetData().movementSpeed;
-        Vector3 newVel = Player.rb.velocity;
+        Vector3 desVel = Character.transform.forward * Character.GetData().movementSpeed;
+        Vector3 newVel = Character.rb.velocity;
         newVel.x = desVel.x;
         newVel.z = desVel.z;
 
-        Player.rb.velocity = Vector3.Lerp(Player.rb.velocity,  newVel, Player.GetData().movementVelocityChange);
+        Character.rb.velocity = Vector3.Lerp(Character.rb.velocity,  newVel, Character.GetData().movementVelocityChange);
 
-        Player.State.SetAnimator(Player.GetData().animMoveSpeedName, Player.rb.velocity.magnitude * Player.GetData().speedAnimationMultiplier);
+        Character.State.SetAnimator(Character.GetData().animMoveSpeedName, Character.rb.velocity.magnitude * Character.GetData().speedAnimationMultiplier);
 
         // Player.animator.SetFloat(Player.GetData().animMoveSpeedName, Player.rb.velocity.magnitude * Player.GetData().speedAnimationMultiplier);
     }

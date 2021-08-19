@@ -10,7 +10,7 @@ public class StunnedState : CharacterState
     public override void Enter(StateMachine _machine, string _animationParameter = "Stunned")
     {
         base.Enter(_machine, "Stunned");
-        stunnedObject = Player.InstantiateObject(Player.GetEffectLib().effects.Find(name => name.name == "Stunned").prefab, Player.transform);
+        stunnedObject = Character.InstantiateObject(Character.GetEffectLib().effects.Find(name => name.name == "Stunned").prefab, Character.transform);
     }
 
     public override void UpdateFrame()
@@ -20,7 +20,7 @@ public class StunnedState : CharacterState
 
         stunTimeLeft -= Time.deltaTime;
         if (stunTimeLeft <= 0)
-            Player.SetState(new IdleState());
+            Character.SetState(new IdleState());
     }
 
     public void TakeDamageData(Damage _damage)
@@ -31,14 +31,14 @@ public class StunnedState : CharacterState
 
     public override void TakeDamage(Damage _damage)
     {
-        if (Player.HealthLeft <= 0) return;
+        if (Character.HealthLeft <= 0) return;
 
-        Player.ChangeHealthLeft(-_damage.attackDamage);
+        Character.ChangeHealthLeft(-_damage.attackDamage);
     }
 
     public override void Exit()
     {
         base.Exit();
-        Player.DestroyObject(stunnedObject);
+        Character.DestroyObject(stunnedObject);
     }
 }

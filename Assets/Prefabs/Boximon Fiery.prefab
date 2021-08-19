@@ -1273,15 +1273,15 @@ MonoBehaviour:
   animator: {fileID: 95206688057043068}
   rb: {fileID: 407970791}
   drawGizmos: 1
-  inputController: {fileID: 890795246}
   data: {fileID: 11400000, guid: e3fc88aa1ae03104a8a83b1375a32320, type: 2}
   skillData: {fileID: 11400000, guid: 15c6e75b00d1f794a8ba25353442f89d, type: 2}
   effectLib: {fileID: 11400000, guid: dbafbe643563c8942b3ad3cd76f5b511, type: 2}
+  inputController: {fileID: 890795246}
   groundedObject: {fileID: 4484936281617936738}
   groundedLayer: 6
   groundedDistance: 0.2
   attackSkill: 0
-  supportSkill: 0
+  supportSkill: 1
 --- !u!1 &1992369794795074
 GameObject:
   m_ObjectHideFlags: 0

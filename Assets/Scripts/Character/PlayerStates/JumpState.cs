@@ -15,12 +15,12 @@ public class JumpState : ActiveState
     {
         base.UpdateFrame();
 
-        if (Player.Inputs.Movement.magnitude >= 0.1f)
+        if (Character.Inputs.Movement.magnitude >= 0.1f)
             JumpMove();
 
-        if (Player.IsGrounded && Player.rb.velocity.y <= 0f)
+        if (Character.IsGrounded && Character.rb.velocity.y <= 0f)
         {
-            Player.SetState(new IdleState());
+            Character.SetState(new IdleState());
             return;
         }
 
@@ -29,30 +29,30 @@ public class JumpState : ActiveState
 
     public void JumpMove()
     {
-        Vector3 lookAtPos = Player.transform.position;
-        lookAtPos.x += Player.Inputs.Movement.x;
-        lookAtPos.z += Player.Inputs.Movement.y;
-        Player.transform.LookAt(lookAtPos);
+        Vector3 lookAtPos = Character.transform.position;
+        lookAtPos.x += Character.Inputs.Movement.x;
+        lookAtPos.z += Character.Inputs.Movement.y;
+        Character.transform.LookAt(lookAtPos);
 
-        Vector3 desVel = Player.transform.forward * Player.GetData().jumpMovementSpeed;
-        Vector3 newVel = Player.rb.velocity;
+        Vector3 desVel = Character.transform.forward * Character.GetData().jumpMovementSpeed;
+        Vector3 newVel = Character.rb.velocity;
         newVel.x = desVel.x;
         newVel.z = desVel.z;
 
-        Player.rb.velocity = newVel;
+        Character.rb.velocity = newVel;
     }
 
     protected void Jump()
     {
-        Vector3 velocity = Player.rb.velocity;
-        velocity.y = Player.GetData().jumpForce;
-        Player.rb.velocity = velocity;
+        Vector3 velocity = Character.rb.velocity;
+        velocity.y = Character.GetData().jumpForce;
+        Character.rb.velocity = velocity;
     }
 
     protected void ApplyGravity()
     {
-        Vector3 velocity = Player.rb.velocity;
-        velocity.y -= Player.GetData().gravity;
-        Player.rb.velocity = velocity;
+        Vector3 velocity = Character.rb.velocity;
+        velocity.y -= Character.GetData().gravity;
+        Character.rb.velocity = velocity;
     }
 }
