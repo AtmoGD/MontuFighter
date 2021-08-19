@@ -21,3 +21,5 @@ MonoBehaviour:
     prefab: {fileID: 9097974771631326726, guid: a2d85fe2c7ed07442ac88ac091cad7c5, type: 3}
   - name: Tornado
     prefab: {fileID: 8247648864044857953, guid: 8adbe2fc12388394782c3f171f538e39, type: 3}
+  - name: Blink
+    prefab: {fileID: 2970324039966344763, guid: 727d8ace26395ac4c9a471ead43346e8, type: 3}

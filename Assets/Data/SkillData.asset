@@ -25,7 +25,8 @@ MonoBehaviour:
   fireballHitForce: 100
   fireballCoolDown: 0.5
   blinkDistance: 10
-  blinkCoolDown: 0.5
+  blinkWaitTime: 0.2
+  blinkCoolDown: 1
   tornadoWaves: 5
   tornadoWaveTime: 0.5
   tornadoDamage: 1

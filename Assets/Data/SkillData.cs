@@ -23,6 +23,7 @@ public class SkillData : ScriptableObject
 
     [Header("Blink")]
     public float blinkDistance = 10f;
+    public float blinkWaitTime = 0.1f;
     public float blinkCoolDown = 0.5f;
 
     [Header("Tornado")]
