@@ -1,4 +1,4 @@
-public class PlayerActiveState : PlayerState
+public class ActiveState : CharacterState
 {
     public override void Enter(StateMachine _machine, string _animationParameter = "")
     {
@@ -11,7 +11,7 @@ public class PlayerActiveState : PlayerState
 
         if (Player.Inputs.Jump && Player.IsGrounded)
         {
-            Machine.SetState(new PlayerJumpState());
+            Machine.SetState(new JumpState());
             return;
         }
 

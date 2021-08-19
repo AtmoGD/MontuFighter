@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerState : State
+public class CharacterState : State
 {
     public CharacterController Player { get; private set; }
     public override void Enter(StateMachine _machine, string _animationParameter = "")
@@ -15,8 +15,8 @@ public class PlayerState : State
     {
         if (Player.HealthLeft <= 0) return;
 
-        Player.SetState(new PlayerHitState());
-        (Player.State as PlayerHitState).TakeDamageData(_damage);
+        Player.SetState(new HitState());
+        (Player.State as HitState).TakeDamageData(_damage);
         Player.ChangeHealthLeft(-_damage.attackDamage);
     }
 }

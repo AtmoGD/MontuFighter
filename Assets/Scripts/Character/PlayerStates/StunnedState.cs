@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStunnedState : PlayerState
+public class StunnedState : CharacterState
 {
     private float stunTimeLeft = -1f;
     private Damage damage;
@@ -20,7 +20,7 @@ public class PlayerStunnedState : PlayerState
 
         stunTimeLeft -= Time.deltaTime;
         if (stunTimeLeft <= 0)
-            Player.SetState(new PlayerIdleState());
+            Player.SetState(new IdleState());
     }
 
     public void TakeDamageData(Damage _damage)

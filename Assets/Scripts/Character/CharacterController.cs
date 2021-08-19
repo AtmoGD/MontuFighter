@@ -23,8 +23,8 @@ public class CharacterController : StateMachine, Attackable
     [Header("Variables")]
     [SerializeField] protected int groundedLayer = 6;
     [SerializeField] protected float groundedDistance = 0.05f;
-    [SerializeField] protected PlayerSkill attackSkill;
-    [SerializeField] protected PlayerSkill supportSkill;
+    [SerializeField] protected Skill attackSkill;
+    [SerializeField] protected Skill supportSkill;
     [SerializeField] protected List<Cooldown> cooldowns = new List<Cooldown>();
 
     public int HealthLeft { get; private set; }
@@ -46,7 +46,7 @@ public class CharacterController : StateMachine, Attackable
 
         cooldowns = new List<Cooldown>();
 
-        SetState(new PlayerIdleState());
+        SetState(new IdleState());
     }
 
     public new void Update()
@@ -104,7 +104,7 @@ public class CharacterController : StateMachine, Attackable
 
     public void TakeDamage(Damage _damage)
     {
-        (State as PlayerState).TakeDamage(_damage);
+        (State as CharacterState).TakeDamage(_damage);
     }
 
     public void ChangeHealthLeft(int _amount)
@@ -135,8 +135,8 @@ public class CharacterController : StateMachine, Attackable
     public SkillData GetSkillData() { return skillData; }
     public EffectLib GetEffectLib() { return effectLib; }
     public PlayerInputController GetInputController() { return inputController; }
-    public PlayerSkill GetAttackSkill() { return attackSkill; }
-    public PlayerSkill GetSupportSkill() { return supportSkill; }
+    public Skill GetAttackSkill() { return attackSkill; }
+    public Skill GetSupportSkill() { return supportSkill; }
 
 
 #if UNITY_EDITOR

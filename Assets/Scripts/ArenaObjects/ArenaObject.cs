@@ -8,7 +8,8 @@ public class ArenaObject : MonoBehaviour, Attackable
     [SerializeField] private Rigidbody rb;
     [SerializeField] ArenaObjectData data;
     [SerializeField] public float health;
-    private void Awake() {
+    private void Awake()
+    {
         health = data.maxHealth;
     }
     public void TakeDamage(Damage _damage)
@@ -21,9 +22,8 @@ public class ArenaObject : MonoBehaviour, Attackable
             Die();
     }
 
-    [ExecuteAlways]
-    public void InstantiateDieObject() {
-        Debug.Log("InstantiateDieObject");
+    public void InstantiateDieObject()
+    {
         Instantiate(data.dieEffect, transform);
     }
 

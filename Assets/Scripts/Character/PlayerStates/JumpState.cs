@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerJumpState : PlayerActiveState
+public class JumpState : ActiveState
 {
     public override void Enter(StateMachine _machine, string _animationParameter = "Jump")
     {
@@ -20,7 +20,7 @@ public class PlayerJumpState : PlayerActiveState
 
         if (Player.IsGrounded && Player.rb.velocity.y <= 0f)
         {
-            Player.SetState(new PlayerIdleState());
+            Player.SetState(new IdleState());
             return;
         }
 

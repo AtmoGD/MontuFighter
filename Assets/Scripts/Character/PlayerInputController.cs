@@ -6,11 +6,11 @@ using UnityEngine.InputSystem.Interactions;
 
 public class PlayerInputController : MonoBehaviour
 {
-    public PlayerInputs Inputs { get; private set; }
+    public CharacterInputs Inputs { get; private set; }
 
     private void Awake()
     {
-        Inputs = new PlayerInputs();
+        Inputs = new CharacterInputs();
     }
 
     private void FixedUpdate() { }
@@ -37,7 +37,7 @@ public class PlayerInputController : MonoBehaviour
 
     public void UseInputs()
     {
-        PlayerInputs newInputs = new PlayerInputs();
+        CharacterInputs newInputs = new CharacterInputs();
         newInputs.Movement = Inputs.Movement;
         Inputs = newInputs;
     }

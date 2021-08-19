@@ -4,14 +4,14 @@ using UnityEngine;
 
 public static class StateFactory
 {
-    public static State Create(PlayerSkill _skill)
+    public static State Create(Skill _skill)
     {
         switch (_skill)
         {
-            case PlayerSkill.Dash:
-                return new PlayerDashState();
+            case Skill.Dash:
+                return new DashState();
             default:
-                return new PlayerIdleState();
+                return new IdleState();
         }
     }
 }

@@ -10,13 +10,13 @@ public abstract class StateMachine : MonoBehaviour
     [SerializeField] public Animator animator;
     [SerializeField] public Rigidbody rb;
     public State State { get; private set; }
-    public PlayerInputs Inputs { get; protected set; }
+    public CharacterInputs Inputs { get; protected set; }
 
     public void Awake()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        Inputs = new PlayerInputs();
+        Inputs = new CharacterInputs();
     }
 
     public void SetState(State _state)

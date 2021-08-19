@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDashState : PlayerState
+public class DashState : CharacterState
 {
     private float distanceLeft = 0f;
     private Vector3 lastPos;
@@ -13,7 +13,7 @@ public class PlayerDashState : PlayerState
 
         if (Player.HasCoolDown(_animationParameter))
         {
-            Player.SetState(new PlayerIdleState());
+            Player.SetState(new IdleState());
             return;
         }
 
@@ -34,7 +34,7 @@ public class PlayerDashState : PlayerState
         lastPos = Player.transform.position;
 
         if (distanceLeft <= 0f)
-            Player.SetState(new PlayerIdleState());
+            Player.SetState(new IdleState());
     }
 
     public override void Exit()
@@ -80,7 +80,7 @@ public class PlayerDashState : PlayerState
             Player.rb.AddForce(-dir * Player.GetData().collideBackForce);
         }
 
-        Player.SetState(new PlayerIdleState());
+        Player.SetState(new IdleState());
     }
 }
 

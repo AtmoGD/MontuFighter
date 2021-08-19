@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementState : PlayerActiveState
+public class MovementState : ActiveState
 {
 
     public override void Enter(StateMachine _machine, string _animationParameter = "Move")
@@ -16,7 +16,7 @@ public class PlayerMovementState : PlayerActiveState
 
         if (Player.Inputs.Movement.magnitude <= 0.1f)
         {
-            Player.SetState(new PlayerIdleState());
+            Player.SetState(new IdleState());
             return;
         }
     }

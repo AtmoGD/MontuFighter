@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHitState : PlayerState
+public class HitState : CharacterState
 {
     private float getHitTimeLeft;
     private Damage damage;
@@ -19,8 +19,8 @@ public class PlayerHitState : PlayerState
         getHitTimeLeft -= Time.deltaTime;
         if (getHitTimeLeft <= 0f)
         {
-            Player.SetState(new PlayerStunnedState());
-            (Player.State as PlayerStunnedState).TakeDamageData(damage);
+            Player.SetState(new StunnedState());
+            (Player.State as StunnedState).TakeDamageData(damage);
         }
     }
 
