@@ -23,4 +23,4 @@ MonoBehaviour:
   fireballAttackDamage: 10
   fireballStunTime: 0.5
   fireballHitForce: 100
-  fireballCoolDown: 3
+  fireballCoolDown: 0.5
