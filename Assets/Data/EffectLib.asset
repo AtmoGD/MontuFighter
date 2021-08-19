@@ -19,3 +19,5 @@ MonoBehaviour:
     prefab: {fileID: 7874876735448980391, guid: fc56ea553802d56459ed8a4923a90148, type: 3}
   - name: Fireball
     prefab: {fileID: 9097974771631326726, guid: a2d85fe2c7ed07442ac88ac091cad7c5, type: 3}
+  - name: Tornado
+    prefab: {fileID: 8247648864044857953, guid: 8adbe2fc12388394782c3f171f538e39, type: 3}

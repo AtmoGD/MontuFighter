@@ -20,4 +20,17 @@ public class SkillData : ScriptableObject
     public float fireballStunTime = 0.5f;
     public float fireballHitForce = 100f;
     public float fireballCoolDown = 0.5f;
+
+    [Header("Blink")]
+    public float blinkDistance = 10f;
+    public float blinkCoolDown = 0.5f;
+
+    [Header("Tornado")]
+    public int tornadoWaves = 5;
+    public float tornadoWaveTime = 0.2f;
+    public int tornadoDamage = 5;
+    public float tornadoSpeedMultiplier = 0.8f;
+    public float tornadoStunTime = 0.5f;
+    public float tornadoCoolDown = 0.5f;
+    public float tornadoRadius = 5f;
 }

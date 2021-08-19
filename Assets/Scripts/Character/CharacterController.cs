@@ -12,7 +12,7 @@ public class CharacterController : StateMachine, Attackable
 #endif
 
     [Header("Data")]
-    [SerializeField] protected PlayerData data;
+    [SerializeField] protected CharacterData data;
     [SerializeField] protected SkillData skillData;
     [SerializeField] protected EffectLib effectLib;
 
@@ -90,9 +90,9 @@ public class CharacterController : StateMachine, Attackable
         DestroyImmediate(_object);
     }
 
-    public Damage GetDamage(int _damage, float _stunTime)
+    public Damage GetDamage(int _damage, float _stunnedTime)
     {
-        return new Damage(this, _damage, _stunTime);
+        return new Damage(this, _damage, _stunnedTime);
     }
 
     public void TakeDamage(Damage _damage)
@@ -124,7 +124,7 @@ public class CharacterController : StateMachine, Attackable
         return false;
     }
 
-    public PlayerData GetData() { return data; }
+    public CharacterData GetData() { return data; }
     public SkillData GetSkillData() { return skillData; }
     public EffectLib GetEffectLib() { return effectLib; }
     public PlayerInputController GetInputController() { return inputController; }

@@ -12,6 +12,10 @@ public static class StateFactory
                 return new DashState();
             case Skill.Fireball:
                 return new FireballState();
+            case Skill.Blink:
+                return new BlinkState();
+            case Skill.Tornado:
+                return new TornadoState();
             default:
                 return new IdleState();
         }

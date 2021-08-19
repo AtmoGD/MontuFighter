@@ -24,3 +24,12 @@ MonoBehaviour:
   fireballStunTime: 0.5
   fireballHitForce: 100
   fireballCoolDown: 0.5
+  blinkDistance: 10
+  blinkCoolDown: 0.5
+  tornadoWaves: 5
+  tornadoWaveTime: 0.5
+  tornadoDamage: 1
+  tornadoSpeedMultiplier: 0.8
+  tornadoStunTime: 0.5
+  tornadoCoolDown: 0.5
+  tornadoRadius: 2

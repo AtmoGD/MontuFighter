@@ -11000,6 +11000,14 @@ PrefabInstance:
       propertyPath: drawGizmos
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 890795247, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: attackSkill
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 890795247, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
+      propertyPath: supportSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1975194375736644, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -12598,7 +12606,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
