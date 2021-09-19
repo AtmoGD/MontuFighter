@@ -21,6 +21,7 @@ public class TornadoState : CharacterState
             Debug.Log("Spawning effect");
             GameObject tornadoObject = Character.InstantiateObject(effect.prefab, Character.transform.position, Quaternion.identity);
             tornadoObject.GetComponent<TornadoController>().TakeController(Character);
+            // tornadoObject.transform.localScale = Vector3.one * Character.GetSkillData().tornadoRadius;
         }
 
         Character.SetState(new IdleState());

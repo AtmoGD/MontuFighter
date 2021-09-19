@@ -30,12 +30,12 @@ public class MovementState : ActiveState
 
     public void Move()
     {
-        Vector3 lookAtPos = Character.transform.position;
+        Vector3 lookAtPos = Character.rb.transform.position;
         lookAtPos.x += Character.Inputs.Movement.x;
         lookAtPos.z += Character.Inputs.Movement.y;
-        Character.transform.LookAt(lookAtPos);
+        Character.rb.transform.LookAt(lookAtPos);
 
-        Vector3 desVel = Character.transform.forward * Character.GetData().movementSpeed;
+        Vector3 desVel = Character.rb.transform.forward * Character.GetData().movementSpeed;
         Vector3 newVel = Character.rb.velocity;
         newVel.x = desVel.x;
         newVel.z = desVel.z;

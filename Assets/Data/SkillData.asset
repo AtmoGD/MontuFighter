@@ -33,4 +33,4 @@ MonoBehaviour:
   tornadoSpeedMultiplier: 0.8
   tornadoStunTime: 0.5
   tornadoCoolDown: 0.5
-  tornadoRadius: 2
+  tornadoRadius: 2.5

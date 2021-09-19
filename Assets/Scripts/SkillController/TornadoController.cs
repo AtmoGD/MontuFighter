@@ -5,6 +5,7 @@ using UnityEngine;
 public class TornadoController : MonoBehaviour
 {
     public GameObject diePrefab;
+    public GameObject tornadoEffect;
     CharacterController character;
     private int tornadosLeft = 0;
     private float tornadoWaveTime = 0f;
@@ -16,6 +17,10 @@ public class TornadoController : MonoBehaviour
         tornadosLeft = character.GetSkillData().tornadoWaves;
         tornadoWaveTime = character.GetSkillData().tornadoWaveTime;
         actualWaveTime = tornadoWaveTime;
+
+        float scale = character.GetSkillData().tornadoRadius;
+        Vector3 localScale = transform.localScale;
+        tornadoEffect.transform.localScale = new Vector3(localScale.x * scale, localScale.y * scale, localScale.z * scale);
     }
 
     private void Update()
@@ -48,13 +53,13 @@ public class TornadoController : MonoBehaviour
 
     private void Attack()
     {
-        RaycastHit[] hits = Physics.SphereCastAll(character.transform.position, character.GetSkillData().tornadoRadius, character.transform.forward, character.GetSkillData().tornadoRadius);
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, character.GetSkillData().tornadoRadius, character.rb.transform.forward, character.GetSkillData().tornadoRadius);
         if (hits.Length > 0)
         {
             foreach (RaycastHit hit in hits)
             {
                 Attackable attackable = hit.transform.GetComponent<Attackable>();
-                if (attackable != null && hit.collider.gameObject != character.gameObject)
+                if (attackable != null && hit.collider.gameObject != character.rb.gameObject)
                 {
                     attackable.TakeDamage(character.GetDamage(character.GetSkillData().tornadoDamage, character.GetSkillData().tornadoStunTime));
 
@@ -66,7 +71,7 @@ public class TornadoController : MonoBehaviour
     private void MoveTowardTarget()
     {
         if (character == null) return;
-        Vector3 targetPosition = character.transform.position;
+        Vector3 targetPosition = character.rb.transform.position;
         targetPosition.y = transform.position.y;
         transform.position = Vector3.Lerp(transform.position, targetPosition, character.GetSkillData().tornadoSpeedMultiplier * Time.deltaTime);
     }
@@ -79,4 +84,14 @@ public class TornadoController : MonoBehaviour
         Destroy(gameObject);
     }
 
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        if (character != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, character.GetSkillData().tornadoRadius);
+        }
+    }
+#endif
 }

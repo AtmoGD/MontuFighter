@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(Rigidbody))]
+// [RequireComponent(typeof(Rigidbody))]
 public abstract class StateMachine : MonoBehaviour
 {
-    [Header("State Machine Referenzes")]
+    [Header("State Machine References")]
     [SerializeField] public Animator animator;
     [SerializeField] public Rigidbody rb;
     public State State { get; private set; }
@@ -14,8 +13,7 @@ public abstract class StateMachine : MonoBehaviour
 
     public void Awake()
     {
-        animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
+        // rb = GetComponent<Rigidbody>();
         Inputs = new CharacterInputs();
     }
 

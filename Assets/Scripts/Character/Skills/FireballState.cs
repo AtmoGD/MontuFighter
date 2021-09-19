@@ -19,7 +19,7 @@ public class FireballState : CharacterState
 
         Effect effect = Character.GetEffectLib().effects.Find(x => x.name == animationParameter);
         if (effect.prefab != null) {
-            GameObject fireballObject = Character.InstantiateObject(effect.prefab, Character.transform.position, Character.transform.rotation);
+            GameObject fireballObject = Character.InstantiateObject(effect.prefab, Character.rb.transform.position, Character.rb.transform.rotation);
             fireballObject.GetComponent<FireballController>().TakeController(Character);
         }
 

@@ -19,12 +19,12 @@ public class DashState : CharacterState
 
         Character.AddCoolDown(new Cooldown(animationParameter, Character.GetSkillData().dashCoolDown));
 
-        lastPos = Character.transform.position;
+        lastPos = Character.rb.transform.position;
         distanceLeft = Character.GetData().skillMultiplier * Character.GetSkillData().dashDistance;
 
         Effect effect = Character.GetEffectLib().effects.Find(x => x.name == animationParameter);
         if (effect.prefab != null)
-            dashObject = Character.InstantiateObject(effect.prefab, Character.transform);
+            dashObject = Character.InstantiateObject(effect.prefab, Character.rb.transform);
     }
 
     public override void UpdateFrame()
@@ -49,11 +49,11 @@ public class DashState : CharacterState
 
     public void Dash()
     {
-        Vector3 lookAtPos = Character.transform.position;
-        lookAtPos += Character.transform.forward;
-        Character.transform.LookAt(lookAtPos);
+        Vector3 lookAtPos = Character.rb.transform.position;
+        lookAtPos += Character.rb.transform.forward;
+        Character.rb.transform.LookAt(lookAtPos);
 
-        Character.rb.velocity = Character.transform.forward * Character.GetData().skillMultiplier * Character.GetSkillData().dashMovementSpeed;
+        Character.rb.velocity = Character.rb.transform.forward * Character.GetData().skillMultiplier * Character.GetSkillData().dashMovementSpeed;
     }
 
     public override void OnCollisionEnter(Collision _collision)

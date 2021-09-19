@@ -49,7 +49,7 @@ public class FireballController : MonoBehaviour
     private void OnTriggerEnter(Collider _other)
     {
         if(controller == null) return;
-        if(_other.gameObject == controller.gameObject) return;
+        if(_other.gameObject == controller.rb.gameObject) return;
 
         Attackable enemy = _other.GetComponent<Attackable>();
 
@@ -57,7 +57,7 @@ public class FireballController : MonoBehaviour
         if (enemy != null)
         {
             enemy.TakeDamage(controller.GetDamage(controller.GetSkillData().fireballAttackDamage, controller.GetSkillData().fireballStunTime));
-            Vector3 dir = (_other.transform.position - controller.transform.position).normalized;
+            Vector3 dir = (_other.transform.position - controller.rb.transform.position).normalized;
             _other.gameObject.GetComponent<Rigidbody>().AddForce(dir * controller.GetSkillData().fireballHitForce);
             // Character.rb.AddForce(-dir * controller.GetData().collideBackForce);
         }
