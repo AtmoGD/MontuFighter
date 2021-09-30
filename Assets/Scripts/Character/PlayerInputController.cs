@@ -20,6 +20,11 @@ public class PlayerInputController : MonoBehaviour
         Inputs.Movement = _context.ReadValue<Vector2>();
     }
 
+    public void PlayerLook(InputAction.CallbackContext _context)
+    {
+        Inputs.Look = _context.ReadValue<Vector2>();
+    }
+
     public void PlayerJump(InputAction.CallbackContext _context)
     {
         Inputs.Jump = _context.phase == InputActionPhase.Performed;
@@ -33,6 +38,11 @@ public class PlayerInputController : MonoBehaviour
     public void PlayerSupportSkill(InputAction.CallbackContext _context)
     {
         Inputs.SupportSkill = _context.phase == InputActionPhase.Performed;
+    }
+
+    public void PlayerSideSkill(InputAction.CallbackContext _context)
+    {
+        Inputs.SideSkill = _context.phase == InputActionPhase.Performed;
     }
 
     public void UseInputs()

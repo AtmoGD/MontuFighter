@@ -17,8 +17,11 @@ public class IdleState : ActiveState
 
         if (Character.Inputs.Movement.magnitude >= 0.1f)
         {
+            Debug.Log("Moving");
             Character.SetState(new MovementState());
             return;
         }
+
+        Character.rb.angularVelocity = Vector3.zero;
     }
 }

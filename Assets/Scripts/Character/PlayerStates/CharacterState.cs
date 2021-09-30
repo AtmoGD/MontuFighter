@@ -11,6 +11,10 @@ public class CharacterState : State
         Character = Machine as CharacterController;
     }
 
+    public override void UpdateFrame() {
+        
+    }
+
     public virtual void TakeDamage(Damage _damage)
     {
         if (Character.HealthLeft <= 0) return;

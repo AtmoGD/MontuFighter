@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdb584280948cb48a1715944ff7ab45, type: 3}
+  m_Name: ReaperData
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  skillMultiplier: 1
+  getHitTime: 0.4
+  stunResistance: 0.1
+  movementSpeed: 50
+  movementVelocityChange: 5
+  animMoveSpeedName: MovementSpeed
+  jumpForce: 50
+  jumpMovementSpeed: 0.1
+  jumpMovementVelocityChange: 5
+  gravity: -9.81
+  collideBackForce: 10
+  speedAnimationMultiplier: 1

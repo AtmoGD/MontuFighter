@@ -15,7 +15,7 @@ MonoBehaviour:
   maxHealth: 100
   skillMultiplier: 1
   stunResistance: 0.1
-  movementSpeed: 12
+  movementSpeed: 80
   jumpMovementSpeed: 5
   jumpForce: 10
   getHitTime: 0.4

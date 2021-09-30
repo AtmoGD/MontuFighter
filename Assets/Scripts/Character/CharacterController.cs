@@ -1,31 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 
 [RequireComponent(typeof(PlayerInputController))]
 public class CharacterController : StateMachine, Attackable
 {
-#if UNITY_EDITOR
-    [Header("Debugging")]
-    [SerializeField] private bool drawGizmos = false;
-#endif
+    [Header("References")]
+    [SerializeField] protected Cinemachine.CinemachineFreeLook freeLook;
+    [SerializeField] protected Transform cameraTransform;
+    [SerializeField] protected PlayerInputController inputController;
+    [SerializeField] protected GameObject groundedObject;
 
     [Header("Data")]
     [SerializeField] protected CharacterData data;
     [SerializeField] protected SkillData skillData;
     [SerializeField] protected EffectLib effectLib;
 
-    [Header("References")]
-    [SerializeField] protected PlayerInputController inputController;
-    [SerializeField] protected GameObject groundedObject;
-
-    [Header("Variables")]
-    [SerializeField] protected int groundedLayer = 6;
-    [SerializeField] protected float groundedDistance = 0.05f;
+    [Header("Skills")]
     [SerializeField] protected Skill attackSkill;
     [SerializeField] protected Skill supportSkill;
+    [SerializeField] protected Skill sideSkill;
     [SerializeField] protected List<Cooldown> cooldowns = new List<Cooldown>();
+
+    [Header("Variables")]
+    [SerializeField] protected float cameraXSpeed = 0.1f;
+    [SerializeField] protected float cameraYSpeed = 0.1f;
+    [SerializeField] protected int groundedLayer = 6;
+    [SerializeField] protected float groundedDistance = 0.05f;
 
     public int HealthLeft { get; private set; }
     public bool IsGrounded
@@ -55,6 +57,8 @@ public class CharacterController : StateMachine, Attackable
 
         CheckCooldowns();
 
+        RotateCamera();
+
         base.Update();
     }
 
@@ -64,11 +68,18 @@ public class CharacterController : StateMachine, Attackable
         inputController.UseInputs();
     }
 
+    private void RotateCamera()
+    {
+        freeLook.m_XAxis.m_InputAxisValue = Inputs.Look.x * cameraXSpeed;
+        freeLook.m_YAxis.m_InputAxisValue = Inputs.Look.y * cameraYSpeed;
+    }
+
     public void CheckCooldowns()
     {
         cooldowns.ForEach(c => c.Remove(Time.deltaTime));
         cooldowns.RemoveAll(c => c.left <= 0f);
     }
+
 
     public GameObject InstantiateObject(GameObject _prefab, Vector3 _position, Quaternion _rotation)
     {
@@ -130,9 +141,14 @@ public class CharacterController : StateMachine, Attackable
     public PlayerInputController GetInputController() { return inputController; }
     public Skill GetAttackSkill() { return attackSkill; }
     public Skill GetSupportSkill() { return supportSkill; }
+    public CinemachineFreeLook GetCam() { return freeLook; }
+    public Transform GetCamTransform() { return cameraTransform; }
 
 
 #if UNITY_EDITOR
+
+    [Header("Debugging")]
+    [SerializeField] private bool drawGizmos = false;
     private void OnDrawGizmos()
     {
         if (!drawGizmos) return;
