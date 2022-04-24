@@ -23,7 +23,7 @@ public class BlinkState : CharacterState
 
         Effect effect = Character.GetEffectLib().effects.Find(x => x.name == animationParameter);
         if (effect.prefab != null) {
-            blinkObjectStart = Character.InstantiateObject(effect.prefab, Character.rb.transform.position + Character.rb.transform.forward, Character.rb.transform.rotation);
+            blinkObjectStart = Character.InstantiateObject(effect.prefab, Character.animator.transform.position + Character.animator.transform.forward, Character.animator.transform.rotation);
             blinkObjectEnd = Character.InstantiateObject(effect.prefab, GetDestination(), Quaternion.identity);
         }
     }
@@ -31,9 +31,9 @@ public class BlinkState : CharacterState
     public Vector3 GetDestination()
     {
         float blinkDistance = Character.GetSkillData().blinkDistance;
-        Vector3 direction = Character.rb.transform.forward;
-        Vector3 newPosition = Character.rb.transform.position + direction * blinkDistance;
-        if(Physics.Raycast(Character.rb.transform.position + Vector3.up * 0.5f, direction, out RaycastHit hit, blinkDistance))
+        Vector3 direction = Character.animator.transform.forward;
+        Vector3 newPosition = Character.animator.transform.position + direction * blinkDistance;
+        if(Physics.Raycast(Character.animator.transform.position + Vector3.up * 0.5f, direction, out RaycastHit hit, blinkDistance))
             newPosition = hit.point + -(direction.normalized * 0.5f);
         return newPosition;
     }

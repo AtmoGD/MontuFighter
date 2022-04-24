@@ -49,11 +49,12 @@ public class DashState : CharacterState
 
     public void Dash()
     {
-        Vector3 lookAtPos = Character.rb.transform.position;
-        lookAtPos += Character.rb.transform.forward;
-        Character.rb.transform.LookAt(lookAtPos);
+        Character.Move(Character.GetSkillData().dashMovementSpeed * Character.animator.transform.forward);
+        // Vector3 lookAtPos = Character.rb.transform.position;
+        // lookAtPos += Character.rb.transform.forward;
+        // Character.rb.transform.LookAt(lookAtPos);
 
-        Character.rb.velocity = Character.rb.transform.forward * Character.GetData().skillMultiplier * Character.GetSkillData().dashMovementSpeed;
+        // Character.rb.velocity = Character.rb.transform.forward * Character.GetData().skillMultiplier * Character.GetSkillData().dashMovementSpeed;
     }
 
     public override void OnCollisionEnter(Collision _collision)
@@ -81,7 +82,7 @@ public class DashState : CharacterState
             Character.rb.AddForce(-dir * Character.GetData().collideBackForce);
         }
 
-        Character.SetState(new IdleState());
+        Character.SetState(new MovementState());
     }
 }
 

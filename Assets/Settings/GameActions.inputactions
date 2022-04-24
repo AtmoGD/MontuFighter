@@ -11,7 +11,8 @@
                     "id": "bdbad9ba-f5aa-47e5-b8fa-757371a6205f",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jump",
@@ -19,7 +20,8 @@
                     "id": "e42c88bd-c60e-4c51-b4ad-2a9b3e0132d5",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "FirstSkill",
@@ -27,7 +29,8 @@
                     "id": "a0c1106a-377a-4ed6-9f6b-e9c1a650913d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "SecondSkill",
@@ -35,7 +38,8 @@
                     "id": "120f9a10-4d14-472a-87fb-c75a93a85cfc",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "SideSkill",
@@ -43,7 +47,8 @@
                     "id": "bc442d36-3ea0-4676-98e8-8f4155e7c121",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Look",
@@ -51,7 +56,17 @@
                     "id": "38844285-2592-4045-9a2e-d82805919850",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MousePosition",
+                    "type": "PassThrough",
+                    "id": "5393e947-68f4-45eb-9bc5-e5ac712690d1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -112,8 +127,30 @@
                 },
                 {
                     "name": "",
+                    "id": "89a2e008-eac8-4540-a040-a951dab9e414",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4c440c2f-cf65-4c08-8bdb-084b0f714b3f",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "05811a3d-8927-4cc0-9e52-aa413aea7077",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -134,8 +171,30 @@
                 },
                 {
                     "name": "",
+                    "id": "8f9fd586-a446-4fe2-a5ff-7773f1258642",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FirstSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b5ce6daf-143f-42e1-8356-dc3baec4b9e8",
                     "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a231426c-0877-4071-9253-3f3b46b7dac5",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -156,12 +215,34 @@
                 },
                 {
                     "name": "",
+                    "id": "99459ec6-3d13-4c30-8bd7-2d261e9e12f6",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SideSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "57631565-4ad5-49da-899a-0a2f48fd7244",
-                    "path": "<Mouse>/delta",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f86e645e-95e3-4e98-adcf-59bb43b529f0",
+                    "path": "<Pointer>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

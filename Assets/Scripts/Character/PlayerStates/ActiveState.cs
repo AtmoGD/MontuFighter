@@ -1,4 +1,4 @@
-public class ActiveState : CharacterState
+public class    ActiveState : CharacterState
 {
     public override void Enter(StateMachine _machine, string _animationParameter = "")
     {
@@ -24,6 +24,12 @@ public class ActiveState : CharacterState
         if (Character.Inputs.SupportSkill)
         {
             Character.SetState(StateFactory.Create(Character.GetSupportSkill()));
+            return;
+        }
+
+        if (Character.Inputs.SideSkill)
+        {
+            Character.SetState(StateFactory.Create(Character.GetSideSkill()));
             return;
         }
     }

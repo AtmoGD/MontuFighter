@@ -8,6 +8,11 @@ public class DestroyController : MonoBehaviour
     [SerializeField] float destroyAfter = 1.0f;
     [SerializeField] GameObject target;
 
+    void Start()
+    {
+        target = gameObject;
+    }
+
     private void Update() {
         if(!destroyAfterTime) return;
 

@@ -7,10 +7,11 @@ using Cinemachine;
 public class CharacterController : StateMachine, Attackable
 {
     [Header("References")]
-    [SerializeField] protected Cinemachine.CinemachineFreeLook freeLook;
     [SerializeField] protected Transform cameraTransform;
     [SerializeField] protected PlayerInputController inputController;
     [SerializeField] protected GameObject groundedObject;
+    [SerializeField] protected ParticleSystem dust;
+    ParticleSystem.EmissionModule dustEmission;
 
     [Header("Data")]
     [SerializeField] protected CharacterData data;
@@ -30,13 +31,14 @@ public class CharacterController : StateMachine, Attackable
     [SerializeField] protected float groundedDistance = 0.05f;
 
     public int HealthLeft { get; private set; }
-    public bool IsGrounded
+    private bool _isGrounded
     {
         get
         {
             return Physics.CheckSphere(groundedObject.transform.position, groundedDistance, 1 << groundedLayer);
         }
     }
+    public bool IsGrounded { get; private set; }
 
     public new void Awake()
     {
@@ -48,16 +50,20 @@ public class CharacterController : StateMachine, Attackable
 
         cooldowns = new List<Cooldown>();
 
+        dustEmission = dust.emission;
+
         SetState(new IdleState());
     }
 
     public new void Update()
     {
+        IsGrounded = _isGrounded;
+
         GetInputs();
 
         CheckCooldowns();
 
-        RotateCamera();
+        dustEmission.enabled = IsGrounded;
 
         base.Update();
     }
@@ -68,16 +74,33 @@ public class CharacterController : StateMachine, Attackable
         inputController.UseInputs();
     }
 
-    private void RotateCamera()
-    {
-        freeLook.m_XAxis.m_InputAxisValue = Inputs.Look.x * cameraXSpeed;
-        freeLook.m_YAxis.m_InputAxisValue = Inputs.Look.y * cameraYSpeed;
-    }
-
     public void CheckCooldowns()
     {
         cooldowns.ForEach(c => c.Remove(Time.deltaTime));
         cooldowns.RemoveAll(c => c.left <= 0f);
+    }
+
+    public void Rotate(Vector2 _input)
+    {
+        Vector3 LookAt = animator.transform.position;
+        LookAt += new Vector3(_input.x, 0, _input.y);
+        animator.transform.LookAt(LookAt);
+    }
+
+    public void Move(Vector2 _input)
+    {
+        Vector3 moveDir = new Vector3(_input.x, 0, _input.y);
+
+        Move(moveDir);
+    }
+
+    public void Move(Vector3 _input)
+    {
+        rb.AddForce(_input, ForceMode.VelocityChange);
+
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, data.movementSpeed);
+
+        animator.SetFloat("MovementSpeed", rb.velocity.magnitude / data.movementSpeed);
     }
 
 
@@ -126,7 +149,8 @@ public class CharacterController : StateMachine, Attackable
         cooldowns.Remove(_cooldown);
     }
 
-    public bool HasCoolDown(string _cooldown) {
+    public bool HasCoolDown(string _cooldown)
+    {
         foreach (Cooldown cooldown in cooldowns)
         {
             if (cooldown.name == _cooldown)
@@ -141,7 +165,7 @@ public class CharacterController : StateMachine, Attackable
     public PlayerInputController GetInputController() { return inputController; }
     public Skill GetAttackSkill() { return attackSkill; }
     public Skill GetSupportSkill() { return supportSkill; }
-    public CinemachineFreeLook GetCam() { return freeLook; }
+    public Skill GetSideSkill() { return sideSkill; }
     public Transform GetCamTransform() { return cameraTransform; }
 
 

@@ -35,61 +35,32 @@ public class MovementState : ActiveState
     {
         base.UpdatePhysics();
 
-        Move();
+        Character.Move(Character.Inputs.Movement);
+
+        if (Character.Inputs.Look.magnitude >= 0.1f)
+            Character.Rotate(Character.Inputs.Look);
+        else
+            Character.Rotate(Character.Inputs.Movement);
     }
 
-    public void Move()
-    {
-        Vector3 moveDir = Vector3.zero;
-        moveDir.x += Character.Inputs.Movement.x;
-        moveDir.z += Character.Inputs.Movement.y;
-        // Character.rb.transform.LookAt(moveDir);
+    // public void Rotate(Vector2 _input) {
+    //     Vector3 LookAt = Character.animator.transform.position;
+    //     LookAt += new Vector3(_input.x, 0, _input.y);
+    //     Character.animator.transform.LookAt(LookAt);
+    // }
 
-        float targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg + Character.GetCamTransform().transform.eulerAngles.y;
-        float angle = Mathf.SmoothDampAngle(Character.transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+    // public void Move(Vector2 _input)
+    // {
+    //     Vector3 moveDir = Vector3.zero;
+    //     moveDir.x += _input.x;
+    //     moveDir.z += _input.y;
 
-        Character.transform.rotation = Quaternion.Euler(0f, angle, 0f);
+    //     moveSpeed = Mathf.Lerp(moveSpeed, Character.GetData().movementSpeed, Character.GetData().movementVelocityChange * Time.deltaTime);
 
-        moveSpeed = Mathf.Lerp(moveSpeed, Character.GetData().movementSpeed, Character.GetData().movementVelocityChange * Time.deltaTime);
+    //     Character.rb.AddForce(moveDir * moveSpeed, ForceMode.VelocityChange);
 
-        Vector3 targetPos = Character.transform.position + Character.transform.forward * moveSpeed;
-        targetPos = Vector3.Lerp(Character.transform.position, targetPos, Character.GetData().movementVelocityChange * Time.deltaTime);
-        // Character.rb.MovePosition(targetPos);
-        Character.rb.velocity = targetPos - Character.transform.position;
-        // }
+    //     Character.animator.SetFloat("MovementSpeed", moveSpeed);
 
-
-        // Vector3 desVel = Character.rb.transform.forward * Character.GetData().movementSpeed;
-        // Vector3 newVel = Character.rb.velocity;
-        // newVel.x = desVel.x;
-        // newVel.z = desVel.z;
-
-        // Character.rb.velocity = Vector3.Lerp(Character.rb.velocity, newVel, Character.GetData().movementVelocityChange);
-
-        // Character.State.SetAnimator(Character.GetData().animMoveSpeedName, Character.rb.velocity.magnitude * Character.GetData().speedAnimationMultiplier);
-        // desiredMovement.x += Character.Inputs.Movement.x;
-        // desiredMovement.z += Character.Inputs.Movement.y;
-        // // Character.rb.transform.LookAt(lookAtPos);
-
-        // // Vector3 desVel = Character.rb.transform.forward * Character.GetData().movementSpeed;
-        // // Vector3 newVel = Character.rb.velocity;
-        // // newVel.x = desVel.x;
-        // // newVel.z = desVel.z;
-
-        // // Character.rb.velocity = Vector3.Lerp(Character.rb.velocity,  newVel, Character.GetData().movementVelocityChange);
-        // float targetAngle = Mathf.Atan2(desiredMovement.x, desiredMovement.z) * Mathf.Rad2Deg + Character.transform.eulerAngles.y;
-        // float angle = Mathf.SmoothDampAngle(Character.transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-
-        // desiredRotation = Quaternion.Euler(0, angle, 0);
-
-        // desiredMovement = Quaternion.Euler(0, angle, 0) * Vector3.forward * Character.GetData().movementSpeed * Time.fixedDeltaTime;
-
-        // Character.transform.rotation = desiredRotation;
-
-        // Character.rb.velocity = desiredMovement;
-
-        // Character.State.SetAnimator(Character.GetData().animMoveSpeedName, Character.rb.velocity.magnitude * Character.GetData().speedAnimationMultiplier);
-
-        // // Player.animator.SetFloat(Player.GetData().animMoveSpeedName, Player.rb.velocity.magnitude * Player.GetData().speedAnimationMultiplier);
-    }
+    //     Rotate(_input);
+    // }
 }

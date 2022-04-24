@@ -7,8 +7,6 @@ public class IdleState : ActiveState
     public override void Enter(StateMachine _machine, string _animationParameter = "")
     {
         base.Enter(_machine, _animationParameter);
-
-        Character.rb.velocity = Vector3.zero;
     }
 
     public override void UpdateFrame()
@@ -21,7 +19,12 @@ public class IdleState : ActiveState
             Character.SetState(new MovementState());
             return;
         }
+    }
 
-        Character.rb.angularVelocity = Vector3.zero;
+    public override void UpdatePhysics()
+    {
+        base.UpdatePhysics();
+
+        Character.Rotate(Character.Inputs.Look);
     }
 }

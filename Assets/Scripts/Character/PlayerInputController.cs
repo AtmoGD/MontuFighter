@@ -25,23 +25,32 @@ public class PlayerInputController : MonoBehaviour
         Inputs.Look = _context.ReadValue<Vector2>();
     }
 
+    public void MousePosion(InputAction.CallbackContext _context)
+    {
+        Inputs.MousePosion = _context.ReadValue<Vector2>();
+    }
+
     public void PlayerJump(InputAction.CallbackContext _context)
     {
-        Inputs.Jump = _context.phase == InputActionPhase.Performed;
+        if (_context.phase != InputActionPhase.Canceled)
+            Inputs.Jump = _context.phase == InputActionPhase.Performed;
     }
 
     public void PlayerAttackSkill(InputAction.CallbackContext _context)
     {
+        // if (_context.phase != InputActionPhase.Canceled)
         Inputs.AttackSkill = _context.phase == InputActionPhase.Performed;
     }
 
     public void PlayerSupportSkill(InputAction.CallbackContext _context)
     {
+        // if (_context.phase != InputActionPhase.Canceled)
         Inputs.SupportSkill = _context.phase == InputActionPhase.Performed;
     }
 
     public void PlayerSideSkill(InputAction.CallbackContext _context)
     {
+        // if (_context.phase != InputActionPhase.Canceled)
         Inputs.SideSkill = _context.phase == InputActionPhase.Performed;
     }
 
